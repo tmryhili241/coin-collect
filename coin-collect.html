@@ -29,6 +29,8 @@
        data-button-link     / ?link=...      — קישור שהלחיצה על הכפתור תוביל אליו בסיום
        data-show-total      / ?total=1|0     — האם להציג סכום כולל (ברירת מחדל: 1)
        data-auto            / ?auto=0|1      — להפעיל אוטומטית בטעינה (ברירת מחדל: 0)
+       data-start-balance   / ?start=0       — יתרת פתיחה (כאשר לא משתמשים באחסון מקומי)
+       data-use-storage     / ?useStorage=1|0 — האם להשתמש באחסון מקומי (ברירת מחדל: 0)
   */
 
   .ols-treasure {
@@ -239,7 +241,9 @@
      data-button-after="המשך לפרק הבא"
      data-button-link=""
      data-show-total="1"
-     data-auto="0">
+     data-auto="0"
+     data-start-balance="0"
+     data-use-storage="0">
 
   <div class="ols-stage" id="ols-stage">
     <div class="ols-card" id="ols-card">
@@ -288,19 +292,25 @@
   const buttonLink   = attr('buttonLink',   'link',     '');
   const showTotal    = attr('showTotal',    'total',    '1') !== '0';
   const autoStart    = attr('auto',         'auto',     '0') === '1';
+  const startParam   = parseInt(attr('startBalance', 'start', '0'), 10) || 0;
+  const useStorage   = attr('useStorage',   'useStorage', '0') === '1';
 
   // ============ storage ============
   const STORAGE_KEY = 'olsCoins';
-  let memoryFallback = 0;
+  let memoryFallback = startParam;
   function readStore(){
-    try { const v = localStorage.getItem(STORAGE_KEY); if (v !== null) return parseInt(v,10)||0; } catch(e){}
-    try { const v = sessionStorage.getItem(STORAGE_KEY); if (v !== null) return parseInt(v,10)||0; } catch(e){}
+    if (useStorage) {
+      try { const v = localStorage.getItem(STORAGE_KEY); if (v !== null) return parseInt(v,10)||0; } catch(e){}
+      try { const v = sessionStorage.getItem(STORAGE_KEY); if (v !== null) return parseInt(v,10)||0; } catch(e){}
+    }
     return memoryFallback;
   }
   function writeStore(n){
     memoryFallback = n;
-    try { localStorage.setItem(STORAGE_KEY, String(n)); } catch(e){}
-    try { sessionStorage.setItem(STORAGE_KEY, String(n)); } catch(e){}
+    if (useStorage) {
+      try { localStorage.setItem(STORAGE_KEY, String(n)); } catch(e){}
+      try { sessionStorage.setItem(STORAGE_KEY, String(n)); } catch(e){}
+    }
     try { window.parent.postMessage({type:'ols-coins-updated', value:n}, '*'); } catch(e){}
   }
 
