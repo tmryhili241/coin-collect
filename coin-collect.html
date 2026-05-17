@@ -371,6 +371,7 @@
 
       // ============ flight logic ============
       let isRunning = false;
+      let isCollected = false;
 
       function spawnCoin(idx, total, onArrive) {
         const coin = document.createElement('div');
@@ -491,6 +492,7 @@
                   hintEl.textContent = '✓ נצברו ' + coinsAdd + ' מטבעות לאוצר שלכם';
                   hintEl.classList.add('ols-hint--success');
                   isRunning = false;
+                  isCollected = true;
                 }, 250);
               }
             });
@@ -500,21 +502,24 @@
 
       // ============ wiring ============
       triggerBtn.addEventListener('click', () => {
-        if (buttonLink) {
-          let parts = buttonLink.split('#');
-          let baseUrl = parts[0];
-          let hash = parts[1];
-
-          if (hash) {
-            let separator = baseUrl.includes('?') ? '&' : '?';
-            window.top.location.href = baseUrl + separator + 'reload=' + Date.now() + '#' + hash;
-          } else {
-            window.top.location.href = buttonLink;
-          }
+        if (!isCollected) {
+          run();
         } else {
-          try { window.parent.postMessage({ type: 'ols-treasure-next' }, '*'); } catch (e) { }
+          if (buttonLink) {
+            let parts = buttonLink.split('#');
+            let baseUrl = parts[0];
+            let hash = parts[1];
+
+            if (hash) {
+              let separator = baseUrl.includes('?') ? '&' : '?';
+              window.top.location.href = baseUrl + separator + 'reload=' + Date.now() + '#' + hash;
+            } else {
+              window.top.location.href = buttonLink;
+            }
+          } else {
+            try { window.parent.postMessage({ type: 'ols-treasure-next' }, '*'); } catch (e) { }
+          }
         }
-        run();
       });
 
       // חשיפה גלובלית — לבדיקות
@@ -527,6 +532,7 @@
         triggerBtn.disabled = false;
         hintEl.textContent = 'לחיצה תוסיף את המטבעות לאוצר שלכם';
         hintEl.classList.remove('ols-hint--success');
+        isCollected = false;
       };
 
       if (autoStart) setTimeout(run, 500);
