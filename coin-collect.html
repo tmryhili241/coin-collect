@@ -343,14 +343,17 @@
         return def;
       }
       const coinsAdd = Math.max(1, parseInt(attr('coinsAdd', 'add', '4'), 10));
-      const textBefore = attr('textBefore', 'before', '');
-      const textAfter = attr('textAfter', 'after', '✓ המטבעות נכנסו לאוצר שלכם').replace('{add}', coinsAdd);
+      const textBefore = attr('textBefore', 'textBefore', ''); // Ignore 'before' parameter for text
+      const textAfter = attr('textAfter', 'textAfter', '✓ המטבעות נכנסו לאוצר שלכם').replace('{add}', coinsAdd); // Ignore 'after' parameter for text
       const buttonBefore = attr('buttonBefore', 'btn', 'אספו את המטבעות');
       const buttonAfter = attr('buttonAfter', 'btnAfter', 'המשך');
       const buttonLink = attr('buttonLink', 'link', '');
       const showTotal = attr('showTotal', 'total', '1') !== '0';
       const autoStart = attr('auto', 'auto', '0') === '1';
-      const startParam = parseInt(attr('startBalance', 'start', '0'), 10) || 0;
+      const urlParams = new URLSearchParams(window.location.search);
+      let startVal = urlParams.get('start');
+      if (startVal === null) startVal = urlParams.get('before'); // Fallback to 'before' for legacy iframes
+      const startParam = startVal !== null ? (parseInt(startVal, 10) || 0) : (parseInt(document.getElementById('ols-treasure')?.getAttribute('data-start-balance'), 10) || 0);
       const useStorage = attr('useStorage', 'useStorage', '0') === '1';
 
       // ============ storage ============
