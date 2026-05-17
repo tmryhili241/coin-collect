@@ -445,7 +445,8 @@
     if (triggerBtn.textContent === buttonAfter && !isRunning){
       // אחרי הצבירה — הכפתור הוא "המשך"
       if (buttonLink) {
-        window.location.href = buttonLink;
+        window.top.location.href = buttonLink;
+        window.top.location.reload();
       } else {
         try { window.parent.postMessage({type:'ols-treasure-next'}, '*'); } catch(e){}
       }
