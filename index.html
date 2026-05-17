@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>עולים שלב · מערכת עיצוב ותבניות תוכן</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&family=Caveat:wght@400..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============= PAPER TEXTURE (used as background fill via filter url(#paper)) ============= -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="paper" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="3"/>
+      <feColorMatrix values="0 0 0 0 0.95
+                             0 0 0 0 0.92
+                             0 0 0 0 0.86
+                             0 0 0 0.07 0"/>
+      <feComposite in2="SourceGraphic" operator="in"/>
+    </filter>
+    <filter id="paperDeep">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7"/>
+      <feColorMatrix values="0 0 0 0 0.9
+                             0 0 0 0 0.84
+                             0 0 0 0 0.74
+                             0 0 0 0.13 0"/>
+    </filter>
+    <filter id="watercolorEdge" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="5"/>
+      <feDisplacementMap in="SourceGraphic" scale="9"/>
+    </filter>
+    <!-- A hand-drawn arrow shape, used by <use href="#arrowR"> -->
+    <symbol id="arrowR" viewBox="0 0 120 40">
+      <path d="M5 22 C 35 8, 70 8, 100 18 L 92 10 M 100 18 L 92 26"
+            fill="none" stroke="currentColor" stroke-width="3"
+            stroke-linecap="round" stroke-linejoin="round"
+            filter="url(#watercolorEdge)"/>
+    </symbol>
+    <symbol id="arrowDown" viewBox="0 0 40 120">
+      <path d="M22 5 C 30 35, 8 70, 18 100 L 10 92 M 18 100 L 26 92"
+            fill="none" stroke="currentColor" stroke-width="3"
+            stroke-linecap="round" stroke-linejoin="round"
+            filter="url(#watercolorEdge)"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ============= TOP RIBBON ============= -->
+<header class="ribbon">
+  <div class="ribbon-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">⚓</span>
+      <span class="brand-name">עולים שלב</span>
+      <span class="brand-sep">·</span>
+      <span class="brand-doc">מערכת עיצוב ותבניות תוכן</span>
+    </div>
+    <nav class="anchor-nav">
+      <a href="#world">01 עולם</a>
+      <a href="#palette">02 צבעים</a>
+      <a href="#type">03 טיפוגרפיה</a>
+      <a href="#illus">04 איורים</a>
+      <a href="#components">05 רכיבים</a>
+      <a href="#templates">06 תבניות</a>
+      <a href="#screens">07 מסכים</a>
+      <a href="#rules">08 כללים</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============= COVER ============= -->
+<section class="cover">
+  <div class="cover-grid">
+    <div class="cover-text">
+      <div class="eyebrow">
+        <span class="dot"></span>
+        <span>גרסה 1.0 · יחידה 1 · מאי 2026</span>
+      </div>
+      <h1 class="cover-title">
+        <span class="line-1">עולים שלב</span>
+        <span class="line-2">Design System &amp; Content Templates</span>
+      </h1>
+      <p class="cover-lede">
+        כל מה שצוות התוכן צריך כדי לבנות מסכים חדשים לקורס בלי לאבד את העולם, את הקצב, ואת הקול של המורה הפרטי שכבר התרגלנו אליו.
+      </p>
+      <ul class="cover-meta">
+        <li><span class="k">קהל</span><span class="v">מורים פרטיים · אוריינות דיגיטלית בינונית-גבוהה</span></li>
+        <li><span class="k">מטרה</span><span class="v">ללמד מורים לבנות למידה מבוססת משחק</span></li>
+        <li><span class="k">פלטפורמה</span><span class="v">HIT · יחידות בקנבה וג'יניאלי</span></li>
+        <li><span class="k">עולם</span><span class="v">פיראטים · מטבעות זהב · סיסמת קוד DINO</span></li>
+      </ul>
+    </div>
+    <aside class="cover-card">
+      <div class="cover-card-paper">
+        <div class="cover-card-tag">תצוגה מקדימה</div>
+        <div class="cover-card-screen">
+          <div class="mini-screen mini-screen--hook">
+            <div class="mini-title">אז מה זה <strong>HOOK?</strong></div>
+            <div class="mini-sub">זה … ומשתמשים בזה בשביל… זה יעזור לכם כש…</div>
+            <div class="mini-illus" data-illus="עוגן ווטרקולור על רקע כתם נייר">⚓</div>
+            <div class="mini-cta">
+              <span class="coin" aria-hidden="true">●</span>
+              לחצו על הכפתור למטה כדי לצבור מטבעות
+            </div>
+            <button class="mini-btn">הבא</button>
+          </div>
+        </div>
+        <div class="cover-card-caption">
+          המסמך הזה מפרק את המסך הזה לאטומים שאפשר להרכיב מחדש לכל יחידה.
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="cover-toc">
+    <a class="toc-card" href="#world"><span class="toc-num">01</span><span class="toc-title">עולם הקורס</span><span class="toc-sub">סיפור המסגרת, קול, אסטרטגיה</span></a>
+    <a class="toc-card" href="#palette"><span class="toc-num">02</span><span class="toc-title">פלטת צבעים</span><span class="toc-sub">ראשית, משנית, סמנטיקה</span></a>
+    <a class="toc-card" href="#type"><span class="toc-num">03</span><span class="toc-title">טיפוגרפיה</span><span class="toc-sub">Rubik · גדלים · היררכיה</span></a>
+    <a class="toc-card" href="#illus"><span class="toc-num">04</span><span class="toc-title">איורים ואסטים</span><span class="toc-sub">בנק האסטים · כללי שימוש</span></a>
+    <a class="toc-card" href="#components"><span class="toc-num">05</span><span class="toc-title">רכיבים חוזרים</span><span class="toc-sub">תובנה · CTA · כפתור · חץ</span></a>
+    <a class="toc-card" href="#templates"><span class="toc-num">06</span><span class="toc-title">תבניות מסכים</span><span class="toc-sub">5 תבניות · 2-3 וריאציות לכל אחת</span></a>
+    <a class="toc-card" href="#screens"><span class="toc-num">07</span><span class="toc-title">מסכים מוצעים</span><span class="toc-sub">פתיחת יחידה · "למה זה חשוב" · סיכום</span></a>
+    <a class="toc-card" href="#rules"><span class="toc-num">08</span><span class="toc-title">Do's &amp; Don'ts</span><span class="toc-sub">קריטי לשמירה על אחידות</span></a>
+  </div>
+</section>
+
+<main id="main-content">
+
+<!-- ============================================================
+     SECTION 01 — WORLD OF THE COURSE
+     ============================================================ -->
+<section class="part" id="world">
+  <header class="part-head">
+    <div class="part-num">01 / WORLD</div>
+    <div>
+      <h2>עולם הקורס</h2>
+      <p class="lede">סיפור המסגרת, הקול והבטחת הערך. כל החלטה עיצובית חוזרת לכאן — אם משהו לא תומך בעמודי התווך האלה, הוא לא שייך לקורס.</p>
+    </div>
+  </header>
+
+  <div class="world-grid">
+    <div class="world-pillars">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <div>
+          <h4>הלומד הוא פיראט</h4>
+          <p>המורה הפרטי שמשתתף בקורס "עולה לסיפון". הספינה, העוגן, המפה והתיבה הם הקונטקסט — לא נושא הלימוד. הם עוטפים את הידע, לא מחליפים אותו.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <div>
+          <h4>מטבעות זהב = פרוגרס</h4>
+          <p>בכל סוף מסך משמעותי הלומד "צובר מטבעות". ה-CTA התחתון תמיד אומר את המילה <em>מטבעות</em> במפורש. זה מנגנון הגמול היחיד בקורס.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <div>
+          <h4>DINO היא הסיסמה</h4>
+          <p>קוד פנימי שחוזר ביחידות (בעיקר במשחק "DINO רגיל"). שמרי על ההופעה שלו אחידה — תמיד באנגלית, רישיות גדולות, כחלק מהמשחק האישי שהלומד בונה.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">04</div>
+        <div>
+          <h4>מיקס עברית-אנגלית</h4>
+          <p>מונחי המקצוע נכתבים באנגלית בתוך כותרת עברית: <em>"אז מה זה HOOK?"</em>, <em>"מה זה FLOW?"</em>. זה חתימה ויזואלית של הקורס — אל תתרגמי.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">05</div>
+        <div>
+          <h4>פיראט אחד לפחות בכל מסך</h4>
+          <p>בשוליים, כמוקד, או כצופה. הוא לא חייב לדבר — מספיק שהוא נוכח. הוא מה שמבדל את הקורס הזה מסלייד-דק רגיל.</p>
+        </div>
+      </div>
+    </div>
+
+    <aside class="world-voice">
+      <h4>הקול של הקורס</h4>
+      <div class="voice-list">
+        <div class="voice-row">
+          <div class="voice-good">"גם לך קרה שהתלמיד איבד עניין?"</div>
+          <div class="voice-arrow">←</div>
+          <div class="voice-bad">"מחקרים מראים שריכוז יורד..."</div>
+        </div>
+        <div class="voice-row">
+          <div class="voice-good">"שחקו במשחק שלנו"</div>
+          <div class="voice-arrow">←</div>
+          <div class="voice-bad">"בצעו את הסימולציה הבאה"</div>
+        </div>
+        <div class="voice-row">
+          <div class="voice-good">"לחצו על הכפתור כדי לצבור מטבעות"</div>
+          <div class="voice-arrow">←</div>
+          <div class="voice-bad">"מעבר ליחידה הבאה"</div>
+        </div>
+        <div class="voice-row">
+          <div class="voice-good">"הלומד הוא הפיראט"</div>
+          <div class="voice-arrow">←</div>
+          <div class="voice-bad">"המשתמש הוא הסוכן"</div>
+        </div>
+      </div>
+      <p class="body-copy" style="margin-top:18px; font-size:13.5px;">
+        אנחנו מדברים <strong>אל</strong> המורה ולא <strong>על</strong> המורה. שאלה ישירה, גוף שני רבים (אתם/לכם), אנחנו חולקים את ההתלבטות, לא מטיפים.
+      </p>
+    </aside>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 02 — PALETTE
+     ============================================================ -->
+<section class="part" id="palette">
+  <header class="part-head">
+    <div class="part-num">02 / PALETTE</div>
+    <div>
+      <h2>פלטת צבעים</h2>
+      <p class="lede">שתי פלטות. הראשית עוטפת את כל הקורס. המשנית (HOOK) נשלפת רק במסכי-פתיחה רגשיים כדי לשבור את הריתמוס.</p>
+    </div>
+  </header>
+
+  <div class="palette-group">
+    <div class="sub-head">
+      <span class="tag">PRIMARY · 01</span>
+      <h3>פלטה ראשית — שליטה</h3>
+      <span class="note">חובה במסך רגיל. ~80% מהשטח מהפלטה הזו.</span>
+    </div>
+    <div class="palette-grid">
+      <div class="swatch"><div class="chip" style="--c:#731018" data-label="900"></div>
+        <div class="meta"><span class="hex">#731018</span><span class="role">אדום עומק</span><span class="use">כותרות אזהרה ("צריך לעדכן"), טקסט הדגשה קצר</span></div></div>
+      <div class="swatch"><div class="chip" style="--c:#BF2A37" data-label="700"></div>
+        <div class="meta"><span class="hex">#BF2A37</span><span class="role">אדום פעולה</span><span class="use">חיצים מודגשים, נקודות "לחצו כאן", סימני שאלה</span></div></div>
+      <div class="swatch"><div class="chip" style="--c:#A65D6A" data-label="400"></div>
+        <div class="meta"><span class="hex">#A65D6A</span><span class="role">ורוד עתיק</span><span class="use">צבע משלים לדגל פיראטי, באנרים משניים</span></div></div>
+      <div class="swatch"><div class="chip" style="--c:#94BAD8" data-label="400"></div>
+        <div class="meta"><span class="hex">#94BAD8</span><span class="role">תכלת אמצע</span><span class="use">בלוקי תובנה ו-CTA. הצבע המוכר של הקורס.</span></div></div>
+      <div class="swatch"><div class="chip" style="--c:#A3C4D9" data-label="300"></div>
+        <div class="meta"><span class="hex">#A3C4D9</span><span class="role">תכלת בהיר</span><span class="use">רקעים עדינים, גרדיאנט מעבר לראש המסך</span></div></div>
+      <div class="swatch light"><div class="chip" style="--c:#F2F2F2" data-label="100"></div>
+        <div class="meta"><span class="hex">#F2F2F2</span><span class="role">לבן-נייר</span><span class="use">רקע ברירת מחדל (תמיד עם טקסטורת ווטרקולור)</span></div></div>
+    </div>
+  </div>
+
+  <div class="palette-group">
+    <div class="sub-head">
+      <span class="tag">SECONDARY · 02</span>
+      <h3>פלטה משנית — HOOK</h3>
+      <span class="note">רק במסכי פתיחת יחידה ו-Hook רגשי. שובר תבנית במכוון.</span>
+    </div>
+    <div class="palette-grid">
+      <div class="swatch"><div class="chip" style="--c:#73BA22" data-label="GREEN"></div>
+        <div class="meta"><span class="hex">#73BA22</span><span class="role">ירוק התלהבות</span><span class="use">איקונים של אישור, מטבעות שנצברו</span></div></div>
+      <div class="swatch"><div class="chip" style="--c:#FC66A6" data-label="PINK"></div>
+        <div class="meta"><span class="hex">#FC66A6</span><span class="role">ורוד אנרגיה</span><span class="use">ענני אזור-תסכול בגרף עקומת העניין</span></div></div>
+      <div class="swatch"><div class="chip" style="--c:#368F6F" data-label="TEAL"></div>
+        <div class="meta"><span class="hex">#368F6F</span><span class="role">טורקיז עמוק</span><span class="use">כפתורי משנה, badges, סימוני "התקדמות"</span></div></div>
+      <div class="swatch light"><div class="chip" style="--c:#DCF0F2" data-label="MIST"></div>
+        <div class="meta"><span class="hex">#DCF0F2</span><span class="role">מיסט-תכלת</span><span class="use">רקעי כרטיסים בהירים, אזורי מידע</span></div></div>
+      <div class="swatch light"><div class="chip" style="--c:#F2E2C4" data-label="SAND"></div>
+        <div class="meta"><span class="hex">#F2E2C4</span><span class="role">חול-קרם</span><span class="use">רקעי "מגילה", רקעי שאלות רפלקציה</span></div></div>
+      <div class="swatch"><div class="chip" style="--c:#D5BC91" data-label="CAMEL"></div>
+        <div class="meta"><span class="hex">#D5BC91</span><span class="role">חום חולי</span><span class="use">שולי איים, רצועות "חוף", פסים תחתונים</span></div></div>
+    </div>
+  </div>
+
+  <div class="palette-group">
+    <div class="sub-head">
+      <span class="tag">SEMANTIC · 03</span>
+      <h3>צבעים סמנטיים</h3>
+    </div>
+    <div class="palette-grid">
+      <div class="swatch"><div class="chip" style="--c:#F4B83A" data-label="ACTION"></div>
+        <div class="meta"><span class="hex">#F4B83A</span><span class="role">צהוב פעולה</span><span class="use">צבע יחיד וקבוע לכפתור הבא/מעבר לפרק הבא</span></div></div>
+      <div class="swatch"><div class="chip" style="--c:#50445D" data-label="INK"></div>
+        <div class="meta"><span class="hex">#50445D</span><span class="role">דיו חום-סגול</span><span class="use">טקסט גוף ברקע בהיר. <strong>לא שחור.</strong></span></div></div>
+      <div class="swatch"><div class="chip" style="--c:#1F2C4C" data-label="NAVY"></div>
+        <div class="meta"><span class="hex">#1F2C4C</span><span class="role">כחול ים עמוק</span><span class="use">כותרות ראשיות, ה"שחור" של הקורס</span></div></div>
+    </div>
+  </div>
+
+  <div class="palette-rules">
+    <h4>חוקי שימוש בצבע — קריטי</h4>
+    <ul>
+      <li><strong>אל</strong> תשתמשי באדום ה-700 (<code>#BF2A37</code>) לטקסט גוף ארוך — רק להדגשה קצרה של משפט אחד, מקסימום שתי שורות.</li>
+      <li><strong>צבע הכפתור הראשי</strong> (<code>#F4B83A</code>) שמור אך ורק לכפתור ההתקדמות. אל תשתמשי בו לרכיב אחר במסך.</li>
+      <li><strong>הפלטה המשנית</strong> נכנסת ביחידה רק במסך אחד-שניים (פתיחה / Hook רגשי / רפלקציה). אם השתמשת בה בכל המסכים — איבדת את האפקט.</li>
+      <li><strong>ניגודיות מינימלית</strong>: טקסט על רקע תכלת חייב להיות לבן (<code>#FFFFFF</code>) או נייבי (<code>#1F2C4C</code>). לא תכלת כהה.</li>
+      <li><strong>אף פעם</strong> שחור טהור (<code>#000000</code>) או לבן טהור (<code>#FFFFFF</code>) על שטחים גדולים — תמיד ה"לבן" של נייר (<code>#FAF5E8</code>) וה"שחור" של נייבי.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 03 — TYPOGRAPHY
+     ============================================================ -->
+<section class="part" id="type">
+  <header class="part-head">
+    <div class="part-num">03 / TYPE</div>
+    <div>
+      <h2>טיפוגרפיה</h2>
+      <p class="lede">פונט אחד: Rubik. כל המשקלים. ההיררכיה לא נשענת על מספר פונטים, היא נשענת על משקל וגודל.</p>
+    </div>
+  </header>
+
+  <div class="type-stack">
+    <div class="type-row">
+      <div class="type-sample" style="font-size:64px; font-weight:900;">אז מה זה <span style="color:var(--blue-700)">HOOK?</span></div>
+      <div class="type-meta">
+        <span class="name">Display</span>
+        <span class="spec">Rubik · 900 · 56–72px · line-height 1.05</span>
+        <span class="use">כותרת ראשית של מסך. אחת בלבד למסך.</span>
+      </div>
+    </div>
+    <div class="type-row">
+      <div class="type-sample" style="font-size:32px; font-weight:800;">שלושת התנאים לכניסה למצב זרימה</div>
+      <div class="type-meta">
+        <span class="name">Heading</span>
+        <span class="spec">Rubik · 800 · 28–36px · line-height 1.15</span>
+        <span class="use">כותרת משנה, ראש בלוק תוכן</span>
+      </div>
+    </div>
+    <div class="type-row">
+      <div class="type-sample" style="font-size:22px; font-weight:700; color: var(--blue-900);">איך "מזרימים" את הלומד?</div>
+      <div class="type-meta">
+        <span class="name">Subhead</span>
+        <span class="spec">Rubik · 700 · 20–24px</span>
+        <span class="use">שאלת hook קצרה, כותרת על בלוק</span>
+      </div>
+    </div>
+    <div class="type-row">
+      <div class="type-sample" style="font-size:17px; font-weight:400; color: var(--ink); max-width: 50ch;">
+        עקומת העניין היא ה"נתיב" שבו עבר הפיראט שלכם. כדי שהלמידה תמשיך, עלינו לנווט בדיוק בקו הדק שבין תסכול לשעמום.
+      </div>
+      <div class="type-meta">
+        <span class="name">Body</span>
+        <span class="spec">Rubik · 400 · 16–18px · line-height 1.55</span>
+        <span class="use">פסקאות הסבר. תמיד על רקע נייר/לבן.</span>
+      </div>
+    </div>
+    <div class="type-row">
+      <div class="type-sample" style="font-size:16px; font-weight:700; color: var(--red-700);">צריך לעדכן בהתאם לאופן בו נשתמש בצבירת מטבעות</div>
+      <div class="type-meta">
+        <span class="name">Emphasis</span>
+        <span class="spec">Rubik · 700 · 16px · #BF2A37</span>
+        <span class="use">הדגשת פעולה/הערה במשפט. שורה אחת — שתיים.</span>
+      </div>
+    </div>
+    <div class="type-row">
+      <div class="type-sample" style="font-size:13px; font-weight:600; color: var(--ink-mute); letter-spacing: 0.08em;">FEEDBACK · עקומת העניין</div>
+      <div class="type-meta">
+        <span class="name">Caption / Tab</span>
+        <span class="spec">Rubik · 600 · 12–14px · letter-spacing .08em</span>
+        <span class="use">תוויות טאבים, eyebrow, מטא-מידע</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="type-mix-demo">
+    <div class="example">
+      איך מתחילים <span class="en">FLOW</span>?
+    </div>
+    <div class="type-mix-rules">
+      <h4>חוקי המיקס עברית-אנגלית</h4>
+      <ul>
+        <li>המונח האנגלי תמיד <strong>UPPERCASE</strong> (HOOK, FLOW, DINO, FEEDBACK).</li>
+        <li>אותו משקל (900/800) כמו המילים העבריות סביבו — לא מודגש יותר ולא פחות.</li>
+        <li>צבע אקצנט כחול (<code>#94BAD8</code> או <code>#1F2C4C</code>) על המילה האנגלית — נותן לעין על מה להיתפס.</li>
+        <li>בלי קו תחתון, בלי מירכאות, בלי "אנגלית" סוגריים — המילה עומדת לבד.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 04 — ILLUSTRATIONS
+     ============================================================ -->
+<section class="part" id="illus">
+  <header class="part-head">
+    <div class="part-num">04 / ILLUSTRATION</div>
+    <div>
+      <h2>איורים ואסטים</h2>
+      <p class="lede">יש לנו בנק אסטים שלם בקנבה. הכלל היחיד: בכל מסך מופיע <strong>פיראט אחד לפחות</strong>. השאר — אופציונלי.</p>
+    </div>
+  </header>
+
+  <div class="illus-intro">
+    <div class="asset-bank">
+      <h4>בנק האסטים — מה יש לנו</h4>
+      <div class="asset-grid">
+        <div class="asset-tile"><div class="glyph">🏴‍☠️</div><div class="label">פיראט שמח</div></div>
+        <div class="asset-tile"><div class="glyph">😠</div><div class="label">פיראט כועס</div></div>
+        <div class="asset-tile"><div class="glyph">😭</div><div class="label">פיראט משועמם</div></div>
+        <div class="asset-tile"><div class="glyph">⚓</div><div class="label">עוגן</div></div>
+        <div class="asset-tile"><div class="glyph">⛵</div><div class="label">ספינה</div></div>
+        <div class="asset-tile"><div class="glyph">🧭</div><div class="label">מצפן זהב</div></div>
+        <div class="asset-tile"><div class="glyph">💰</div><div class="label">מטבעות</div></div>
+        <div class="asset-tile"><div class="glyph">🗺️</div><div class="label">מפת אוצר</div></div>
+        <div class="asset-tile"><div class="glyph">💣</div><div class="label">פצצה</div></div>
+        <div class="asset-tile"><div class="glyph">🎁</div><div class="label">תיבת אוצר</div></div>
+        <div class="asset-tile"><div class="glyph">🏁</div><div class="label">דגל שחור</div></div>
+        <div class="asset-tile"><div class="glyph">🦜</div><div class="label">תוכי</div></div>
+        <div class="asset-tile"><div class="glyph">🐙</div><div class="label">תמנון</div></div>
+        <div class="asset-tile"><div class="glyph">⭐</div><div class="label">כוכב</div></div>
+        <div class="asset-tile"><div class="glyph">👍</div><div class="label">אגודל</div></div>
+        <div class="asset-tile"><div class="glyph">👎</div><div class="label">אגודל מטה</div></div>
+        <div class="asset-tile"><div class="glyph">🎈</div><div class="label">בלון</div></div>
+        <div class="asset-tile"><div class="glyph">🎂</div><div class="label">קאפקייק</div></div>
+      </div>
+      <p class="body-copy" style="margin-top:14px; font-size:13px;">
+        סגנון: <strong>ווטרקולור-קריקטורי חם</strong>. גוונים כהים מודגשים בקווי מתאר. שולים רכים. אל תערבבי עם איורים פלאט/וקטוריים.
+      </p>
+    </div>
+
+    <div>
+      <div class="sub-head" style="margin-top:0">
+        <span class="tag">RULES</span>
+        <h3>איפה הפיראט שלך?</h3>
+      </div>
+      <div class="illus-usage">
+        <div class="usage-card">
+          <span class="badge ok">✓ במוקד</span>
+          <h5>מרכזי כשהוא הסיפור</h5>
+          <p>מסכי-פתיחה, "מה קרה לפיראט?", רגעי תובנה. ~40% משטח המסך.</p>
+        </div>
+        <div class="usage-card">
+          <span class="badge ok">✓ בשוליים</span>
+          <h5>מציץ מהפינה</h5>
+          <p>מסכי-תאוריה ארוכים. פיראט קטן מציץ מימין/שמאל — מזכיר שהוא איתנו.</p>
+        </div>
+        <div class="usage-card">
+          <span class="badge warn">≈ באייקון</span>
+          <h5>כלי / מצפן / עוגן</h5>
+          <p>אם המסך טכני (טופס, פעילות) — מספיק פריט כמו עוגן או מצפן ליד הכותרת.</p>
+        </div>
+      </div>
+      <div class="palette-rules" style="margin-top:18px; border-color: var(--teal); border-right-color: var(--teal);">
+        <h4 style="color: var(--teal);">חוק האחד</h4>
+        <ul>
+          <li>כל מסך = פיראט אחד לפחות. בלי יוצא מן הכלל.</li>
+          <li>אם יש 2+ דמויות, יש "מספרים" — אחד גדול ומובל, השאר רקע.</li>
+          <li>הדמות תמיד <strong>מקבילה</strong> לפעולת המסך (שמח = הצליח, כועס = נכשל, ישן = שעמום).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-head">
+    <span class="tag">PLACEHOLDERS</span>
+    <h3>איך לסמן "כאן יהיה איור"</h3>
+    <span class="note">השפה הוויזואלית של placeholder בכל התבניות שמופיעות בהמשך.</span>
+  </div>
+  <div class="frame-row cols-3">
+    <div class="ph" style="height:160px">
+      <div>
+        <div class="ph-label">ILLUSTRATION</div>
+        <div class="ph-desc">פיראט שמח עם מפה — בתנוחת "מצאתי!"</div>
+      </div>
+    </div>
+    <div class="ph" style="height:160px">
+      <div>
+        <div class="ph-label">ILLUSTRATION</div>
+        <div class="ph-desc">עוגן ווטרקולור על רקע כתם נייר חולי</div>
+      </div>
+    </div>
+    <div class="ph" style="height:160px">
+      <div>
+        <div class="ph-label">ILLUSTRATION</div>
+        <div class="ph-desc">ספינה במערבולת — סצנת "פיראט בסכנה"</div>
+      </div>
+    </div>
+  </div>
+  <p class="body-copy" style="margin-top:14px;">
+    כל placeholder כולל: סוג האסט (ILLUSTRATION / ICON / DECORATION), <strong>תיאור מילולי קצר</strong> שהמעצב/ת בקנבה יכולים למצוא בבנק האסטים תוך 5 שניות, ומידות יחסיות לתוך הקנבס.
+  </p>
+</section>
+
+<!-- ============================================================
+     SECTION 05 — COMPONENTS
+     ============================================================ -->
+<section class="part" id="components">
+  <header class="part-head">
+    <div class="part-num">05 / COMPONENTS</div>
+    <div>
+      <h2>רכיבים חוזרים</h2>
+      <p class="lede">השפה ה"אטומית" של הקורס. כל מסך מורכב מהרכיבים האלה — ולא ממה שמחוצה להם.</p>
+    </div>
+  </header>
+
+  <div class="comp-grid">
+
+    <!-- Insight block -->
+    <div class="comp-card">
+      <div class="comp-head">
+        <span class="name">בלוק תובנה</span>
+        <span class="id">insight</span>
+      </div>
+      <div class="comp-stage">
+        <div class="insight tag">
+          הסקרנות העצמית עולה כשהאתגר מאוזן לרמת המיומנות.
+        </div>
+      </div>
+      <div class="comp-notes">
+        <strong>מתי</strong>: לסגור פסקת תאוריה במשפט אחד שניתן לקעקע.<br>
+        <ul>
+          <li>רקע: <code>#5B8AAC</code> · טקסט לבן, משקל 600</li>
+          <li>גובה: 2 שורות מקסימום · רוחב: עד 440px</li>
+          <li>תווית "תובנה" קטנה למעלה מימין — אופציונלית</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CTA block -->
+    <div class="comp-card">
+      <div class="comp-head">
+        <span class="name">בלוק CTA</span>
+        <span class="id">cta-block</span>
+      </div>
+      <div class="comp-stage">
+        <div class="cta-block">
+          <div class="compass">N</div>
+          <div class="body">
+            <strong>לחצו על הכפתור כאן למטה</strong>
+            כדי לצבור מטבעות ולעבור לחלק הבא!
+          </div>
+        </div>
+      </div>
+      <div class="comp-notes">
+        <strong>מתי</strong>: רגע לפני הכפתור הצהוב. תמיד בתחתית המסך.<br>
+        <ul>
+          <li>תמיד עם המצפן הזהב — לא להחליף בעיגול ריק</li>
+          <li>הניסוח קבוע: "לחצו על הכפתור... כדי לצבור מטבעות"</li>
+          <li>אסור להופיע פעמיים באותו מסך</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Primary button -->
+    <div class="comp-card">
+      <div class="comp-head">
+        <span class="name">כפתור התקדמות</span>
+        <span class="id">course-btn</span>
+      </div>
+      <div class="comp-stage">
+        <button class="course-btn">הבא</button>
+      </div>
+      <div class="comp-notes">
+        <strong>וריאציות טקסט</strong>: "הבא" · "מעבר לפרק הבא" · "סיימתי" · "התחילו"<br>
+        <ul>
+          <li>צבע מנעלי <code>#F4B83A</code> · שפת תחתון <code>#E0A325</code></li>
+          <li>תמיד במרכז · עיגול מלא · אין כפתור משני</li>
+          <li>אם יש שני מצבים — אחד בלבד פעיל</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Red emphasis -->
+    <div class="comp-card">
+      <div class="comp-head">
+        <span class="name">טקסט אדום — הערה</span>
+        <span class="id">red-emp</span>
+      </div>
+      <div class="comp-stage">
+        <div class="red-emp">
+          צריך לעדכן בהתאם לאופן בו<br>נשתמש בצבירת מטבעות
+        </div>
+      </div>
+      <div class="comp-notes">
+        <strong>מתי</strong>: הערה לעצמי / לצוות / אזהרה רכה בתוך מסך.<br>
+        <ul>
+          <li>צבע <code>#BF2A37</code> · משקל 700</li>
+          <li>מקסימום 3 שורות · ממורכז</li>
+          <li>בגרסה הסופית — חלק מההערות יוסרו, חלק יהפכו לטולטיפ</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Hand-drawn arrows -->
+    <div class="comp-card">
+      <div class="comp-head">
+        <span class="name">חצים ידניים</span>
+        <span class="id">arrow-hand</span>
+      </div>
+      <div class="comp-stage">
+        <div class="arrow-demo">
+          <svg class="arrow-side" style="transform: scaleX(-1)"><use href="#arrowR"/></svg>
+          <span class="caveat">לחצו כאן</span>
+          <svg class="arrow-down"><use href="#arrowDown"/></svg>
+        </div>
+      </div>
+      <div class="comp-notes">
+        <strong>מתי</strong>: להפנות עין למשהו במסך — בלוק תוכן, כפתור, שדה.<br>
+        <ul>
+          <li>סגנון: קו מוברש, לא נקי. צבע <code>#50445D</code></li>
+          <li>תווית "Caveat" סגלגלה — אופציונלית · ולעולם לא ארוכה מ-3 מילים</li>
+          <li>אסור להשתמש בחץ-Unicode (←) או בחץ וקטורי מושלם</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Paper background -->
+    <div class="comp-card">
+      <div class="comp-head">
+        <span class="name">רקע נייר</span>
+        <span class="id">paper-bg</span>
+      </div>
+      <div class="comp-stage" style="padding: 0;">
+        <div style="width:100%; height: 180px; background: #FAF5E8; position: relative; overflow:hidden; border-radius: 0 0 14px 14px;">
+          <div style="position:absolute; inset:0; background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22280%22 height=%22280%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%222%22 seed=%226%22/><feColorMatrix values=%220 0 0 0 0.88 0 0 0 0 0.82 0 0 0 0 0.7 0 0 0 0.13 0%22/></filter><rect width=%22280%22 height=%22280%22 filter=%22url(%23n)%22/></svg>'); opacity: 0.45; mix-blend-mode: multiply;"></div>
+          <div style="position:absolute; bottom:14px; right:14px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-mute);">
+            #FAF5E8 + watercolor noise · multiply 45%
+          </div>
+        </div>
+      </div>
+      <div class="comp-notes">
+        <strong>הרקע הקבוע של כל מסך</strong>. בקנבה: שכבת "Watercolor Paper" מהבנק.<br>
+        <ul>
+          <li>אף פעם לא לבן חלק (<code>#FFFFFF</code>) · תמיד עם טקסטורה</li>
+          <li>אם המסך כהה (פתיחת יחידה) — נייר עם גוון תכלת בתחתית</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Compound: full screen anatomy -->
+    <div class="comp-card full">
+      <div class="comp-head">
+        <span class="name">אנטומיה של מסך טיפוסי</span>
+        <span class="id">screen-anatomy</span>
+      </div>
+      <div class="comp-stage anatomy" style="padding: 32px; align-items: stretch;">
+        <div style="position: relative; width: 100%; max-width: 720px;">
+          <div class="hit-frame">
+            <div class="hit-topbar">
+              <span class="hit-logo">Hi!</span>
+              <span class="hit-tabs"><span>הקורסים שלי</span><span>לוח מודעות</span><span>מטלות</span></span>
+              <span class="hit-toggle">מצב עריכה</span>
+            </div>
+            <div class="screen" style="min-height: 380px; padding: 28px 32px;">
+              <div class="screen-grid">
+                <div>
+                  <h1 class="s-title">אז מה זה <em>HOOK?</em></h1>
+                  <p class="s-sub">זה … ומשתמשים בזה בשביל… זה יעזור לכם כש…</p>
+                  <div class="insight" style="margin-top: 14px;">המשפט שיגרום למורה לעצור ולחשוב.</div>
+                </div>
+                <div class="screen-side-illus">
+                  <div class="ph" style="height: 180px; width: 180px;">
+                    <div>
+                      <div class="ph-label">ILLUSTRATION</div>
+                      <div class="ph-desc">עוגן ווטרקולור</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="screen-bottom">
+                <div class="cta-block" style="max-width:100%;">
+                  <div class="compass">N</div>
+                  <div class="body"><strong>לחצו על הכפתור כאן למטה</strong> כדי לצבור מטבעות ולעבור לחלק הבא!</div>
+                </div>
+                <button class="course-btn small">הבא</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Annotation pins -->
+          <div class="annot" style="top: 70px; right: -140px;">כותרת + מונח אנגלי</div>
+          <div class="annot" style="top: 130px; right: -120px;">תת-כותרת hook</div>
+          <div class="annot" style="top: 200px; right: -120px;">בלוק תובנה</div>
+          <div class="annot" style="top: 240px; left: -140px;">איור פיראט / פריט עולם</div>
+          <div class="annot" style="bottom: 90px; right: -120px;">בלוק CTA</div>
+          <div class="annot" style="bottom: 30px; right: -110px;">כפתור הבא</div>
+        </div>
+      </div>
+      <div class="comp-notes">
+        כל מסך טיפוסי מורכב מ-6 רכיבים בלבד. אם רכיב חסר — שאלי למה. אם רכיב נוסף הוכנס — שאלי האם הוא לא דורש להפוך לרכיב חדש במערכת.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 06 — TEMPLATES (with 2-3 variations each)
+     ============================================================ -->
+<section class="part" id="templates">
+  <header class="part-head">
+    <div class="part-num">06 / TEMPLATES</div>
+    <div>
+      <h2>תבניות מסכים</h2>
+      <p class="lede">5 תבניות שמכסות 90% מהקורס. לכל תבנית 2–3 וריאציות — שונות בפריסה והדגשה, זהות במרכיבים. בחרי לפי הסיטואציה.</p>
+    </div>
+  </header>
+
+  <!-- TEMPLATE 1: WHAT IS X -->
+  <div class="sub-head">
+    <span class="tag">TEMPLATE · 01</span>
+    <h3>תבנית "מה זה X?"</h3>
+    <span class="note">פתיחת מושג חדש · שאלת hook · הסבר · CTA</span>
+  </div>
+  <p class="body-copy" style="margin-bottom: 18px;">
+    המסך הראשון של כל יחידת-משנה. המורה הפרטי שואל את עצמו "רגע, מה זה?" — אנחנו עונים בדיוק כשהוא שואל. וריאציה A היא ברירת המחדל; B כשיש איור גדול לסיפור; C כשהמושג ארוך מדי לפרק בכותרת.
+  </p>
+
+  <div class="frame-row cols-3">
+    <!-- Variation A — current style (anchor-right) -->
+    <div class="frame">
+      <div class="frame-meta">
+        <span class="label">A · CLASSIC</span>
+        <span class="name">איור צד · כותרת ימין</span>
+      </div>
+      <div class="frame-desc">הפריסה הקיימת בקורס. שמרני, ברור, עובד תמיד.</div>
+      <div class="hit-frame">
+        <div class="hit-topbar"><span class="hit-logo">Hi!</span><span class="hit-tabs"><span>קורסים</span></span></div>
+        <div class="screen" style="padding: 28px 28px; min-height: 380px;">
+          <div class="screen-grid">
+            <div>
+              <h1 class="s-title">אז מה זה <em>HOOK?</em></h1>
+              <p class="s-sub">זה … ומשתמשים בזה בשביל… זה יעזור לכם כש…</p>
+              <div class="insight" style="margin-top: 14px;">משפט תובנה קצר על מה ה-HOOK עושה ללמידה.</div>
+            </div>
+            <div class="screen-side-illus">
+              <div class="ph" style="height: 160px;">
+                <div><div class="ph-label">ILLUSTRATION</div><div class="ph-desc">עוגן ווטרקולור על כתם נייר</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="screen-bottom" style="margin-top: 18px;">
+            <div class="cta-block"><div class="compass">N</div><div class="body"><strong>לחצו על הכפתור</strong> כדי לצבור מטבעות ולעבור לחלק הבא!</div></div>
+            <button class="course-btn small">הבא</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Variation B — large hero illustration -->
+    <div class="frame">
+      <div class="frame-meta">
+        <span class="label">B · HERO</span>
+        <span class="name">איור גיבור · כותרת על</span>
+      </div>
+      <div class="frame-desc">כשהאיור מספר את הסיפור (פיראט בסירה, פיראט בעוגן). הכותרת קטנה יותר.</div>
+      <div class="hit-frame">
+        <div class="hit-topbar"><span class="hit-logo">Hi!</span><span class="hit-tabs"><span>קורסים</span></span></div>
+        <div class="screen" style="padding: 24px 28px; min-height: 380px;">
+          <div style="text-align: center;">
+            <h1 class="s-title" style="font-size: 30px; margin-bottom: 14px;">מה זה <em>FLOW</em>?</h1>
+            <div class="ph" style="height: 160px; margin: 0 auto 14px; max-width: 380px;">
+              <div><div class="ph-label">ILLUSTRATION</div><div class="ph-desc">פיראט שמח על גלגל-הצלה במים — סצנה מרכזית</div></div>
+            </div>
+            <p class="s-sub" style="margin: 0 auto 14px; text-align: center;">גם לך קרה שהתלמיד איבד עניין תוך כדי השיעור?</p>
+            <div class="insight" style="margin: 0 auto;">בדיוק בשביל זה נלמד איך להגיע ל-FLOW — בעברית: מצב זרימה.</div>
+          </div>
+          <div class="screen-bottom" style="margin-top: 18px;">
+            <button class="course-btn small">הבא</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Variation C — compact, no insight -->
+    <div class="frame">
+      <div class="frame-meta">
+        <span class="label">C · COMPACT</span>
+        <span class="name">מינימלי · לסקירה מהירה</span>
+      </div>
+      <div class="frame-desc">למושגים שלא דורשים פסקה. שאלה + תשובה אחת + CTA.</div>
+      <div class="hit-frame">
+        <div class="hit-topbar"><span class="hit-logo">Hi!</span><span class="hit-tabs"><span>קורסים</span></span></div>
+        <div class="screen" style="padding: 28px 28px; min-height: 380px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+          <div class="caveat" style="margin-bottom: 6px;">מילון פיראטי</div>
+          <h1 class="s-title" style="font-size: 44px; margin-bottom: 14px;">מה זה <em>DINO?</em></h1>
+          <p style="font-size: 17px; color: var(--ink); max-width: 36ch; margin: 0 0 24px;">סיסמת קוד פנימית של המשחק שהלומדים יבנו. <strong style="color: var(--red-700)">תמיד באנגלית, רישיות גדולות.</strong></p>
+          <button class="course-btn small">הבא</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEMPLATE 2: THEORY -->
+  <div class="sub-head">
+    <span class="tag">TEMPLATE · 02</span>
+    <h3>תבנית תיאוריה</h3>
+    <span class="note">פסקת הסבר ארוכה · בלוק תובנה · CTA</span>
+  </div>
+
+  <div class="frame-row">
+    <!-- Variation A -->
+    <div class="frame">
+      <div class="frame-meta">
+        <span class="label">A · CLASSIC</span>
+        <span class="name">תוכן ימין · איור שמאל</span>
+      </div>
+      <div class="hit-frame">
+        <div class="hit-topbar"><span class="hit-logo">Hi!</span><span class="hit-tabs"><span>קורסים</span></span></div>
+        <div class="screen" style="padding: 28px;">
+          <div class="theory-layout">
+            <div>
+              <h1 class="s-title" style="font-size: 28px;"><em>FLOW</em> | מצב זרימה</h1>
+              <div class="theory-body" style="margin-top: 10px;">
+                <p>מתקיים במישור הדק בין תסכול לשעמום, במקום בו הלומד <span class="hl">מותח את הגבולות שלו</span> אבל לא מגיע מעבר לקצה היכולת.</p>
+                <p>הפסיכולוג מיהאי הגדיר את זה כ"חוויה מיטבית" — תחושה שאתה כל כך שקוע במשהו שהשעות מרגישות כמו דקות.</p>
+              </div>
+              <div class="insight tag" style="margin-top: 16px;">
+                כשהלומד נכנס למצב הזה — הוא יבצע את המשימה מהנאה ולא מאתגר.
+              </div>
+            </div>
+            <div class="screen-side-illus">
+              <div class="ph" style="height: 200px;">
+                <div><div class="ph-label">ILLUSTRATION</div><div class="ph-desc">פיראט קטן מציץ מהפינה הימנית-תחתונה</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="screen-bottom" style="margin-top: 22px;">
+            <button class="course-btn small">הבא</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Variation B — image-as-figure -->
+    <div class="frame">
+      <div class="frame-meta">
+        <span class="label">B · DIAGRAM</span>
+        <span class="name">תרשים גדול · הסבר תחתון</span>
+      </div>
+      <div class="hit-frame">
+        <div class="hit-topbar"><span class="hit-logo">Hi!</span><span class="hit-tabs"><span>קורסים</span></span></div>
+        <div class="screen" style="padding: 28px;">
+          <h1 class="s-title" style="font-size: 26px; margin-bottom: 10px;">עקומת העניין <span class="sep">|</span> מה קרה לפיראט?</h1>
+          <div class="ph" style="height: 200px; margin: 12px 0;">
+            <div><div class="ph-label">DIAGRAM</div><div class="ph-desc">גרף עקומת העניין — ציר X מיומנות, ציר Y אתגר, עם ספינה במערבולת</div></div>
+          </div>
+          <p style="font-size: 14.5px; color: var(--ink); margin: 0 0 12px;">
+            עקומת העניין היא ה"נתיב" שבו עבר הפיראט שלכם. כדי שהלמידה תמשיך, עלינו לנווט בקו הדק שבין תסכול לשעמום.
+          </p>
+          <div class="insight" style="margin: 0;">ציר X = רמת המיומנות · ציר Y = רמת האתגר.</div>
+          <div class="screen-bottom" style="margin-top: 16px;">
+            <button class="course-btn small">הבא</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEMPLATE 3: 3 PRINCIPLES -->
+  <div class="sub-head">
+    <span class="tag">TEMPLATE · 03</span>
+    <h3>תבנית 3 עקרונות</h3>
+    <span class="note">סיכום עקרונות / רכיבים / שלבים — מספר קבוע, בדרך כלל 3</span>
+  </div>
+
+  <div class="frame-row">
+    <!-- Variation A — cards -->
+    <div class="frame">
+      <div class="frame-meta">
+        <span class="label">A · CARDS</span>
+        <span class="name">כרטיסים אופקיים (כמו במסך הקיים)</span>
+      </div>
+      <div class="hit-frame">
+        <div class="hit-topbar"><span class="hit-logo">Hi!</span><span class="hit-tabs"><span>קורסים</span></span></div>
+        <div class="screen" style="padding: 24px 28px;">
+          <h1 class="s-title" style="font-size: 24px; text-align: center; margin-bottom: 6px;">שלושת התנאים לכניסה למצב זרימה</h1>
+          <p class="s-sub" style="text-align: center; margin-bottom: 20px;">לחצו על הנקודות כדי לחשוף את התנאים</p>
+          <div class="three-cards">
+            <div class="principle-card">
+              <div class="principle-num">1</div>
+              <div class="principle-illus">
+                <div class="ph small" style="height: 70px; width: 100%;"><div><div class="ph-desc">מפת אוצר</div></div></div>
+              </div>
+              <div class="principle-foot"><strong>מטרות ברורות</strong>הלומד יודע בדיוק מה לעשות</div>
+            </div>
+            <div class="principle-card">
+              <div class="principle-num">2</div>
+              <div class="principle-illus">
+                <div class="ph small" style="height: 70px; width: 100%;"><div><div class="ph-desc">2 אגודלים</div></div></div>
+              </div>
+              <div class="principle-foot"><strong>משוב מיידי</strong>הפעולות שלו משפיעות על התוצאה</div>
+            </div>
+            <div class="principle-card">
+              <div class="principle-num">3</div>
+              <div class="principle-illus">
+                <div class="ph small" style="height: 70px; width: 100%;"><div><div class="ph-desc">דחליל פיראט</div></div></div>
+              </div>
+              <div class="principle-foot"><strong>איזון</strong>אתגר בדיוק מעל ליכולת</div>
+            </div>
+          </div>
+          <div class="screen-bottom" style="margin-top: 16px;">
+            <button class="course-btn small">הבא</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Variation B — list -->
+    <div class="frame">
+      <div class="frame-meta">
+        <span class="label">B · LIST</span>
+        <span class="name">רשימה אנכית · יותר טקסט לכל עקרון</span>
+      </div>
+      <div class="hit-frame">
+        <div class="hit-topbar"><span class="hit-logo">Hi!</span><span class="hit-tabs"><span>קורסים</span></span></div>
+        <div class="screen" style="padding: 24px 28px;">
+          <h1 class="s-title" style="font-size: 24px;">3 עקרונות ללמידה מבוססת משחק</h1>
+          <p class="s-sub">העקרונות שיהפכו כל שיעור פרטי למשחק.</p>
+          <div class="principles-list">
+            <div class="row">
+              <div class="num">1</div>
+              <div class="ph small" style="height: 64px; width: 80px;"><div><div class="ph-desc" style="font-size:10px;">מפת אוצר</div></div></div>
+              <div><h5>מטרות ברורות</h5><p>הלומד יודע בדיוק מה עליו לעשות ומה הוא מנסה להשיג.</p></div>
+            </div>
+            <div class="row">
+              <div class="num">2</div>
+              <div class="ph small" style="height: 64px; width: 80px;"><div><div class="ph-desc" style="font-size:10px;">אגודלים</div></div></div>
+              <div><h5>משוב מיידי</h5><p>הוא מבין באופן מיידי איך הפעולות שלו השפיעו על התוצאה.</p></div>
+            </div>
+            <div class="row">
+              <div class="num">3</div>
+              <div class="ph small" style="height: 64px; width: 80px;"><div><div class="ph-desc" style="font-size:10px;">דחליל פיראט</div></div></div>
+              <div><h5>איזון</h5><p>קל מדי → שעמום. קשה מדי → תסכול. הנקודה המתוקה באמצע.</p></div>
+            </div>
+          </div>
+          <div class="screen-bottom" style="margin-top: 16px;">
+            <button class="course-btn small">הבא</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEMPLATE 4: TRANSITION -->
+  <div class="sub-head">
+    <span class="tag">TEMPLATE · 04</span>
+    <h3>תבנית מעבר בין יחידות</h3>
+    <span class="note">מסכמים מה למדנו · רומזים מה מחכה · בולטים בכפתור</span>
+  </div>
+
+  <div class="frame-row">
+    <div class="frame">
+      <div class="frame-meta">
+        <span class="label">A · SUMMARY</span>
+        <span class="name">סיכום צד שמאל · מטבעות מימין</span>
+      </div>
+      <div class="hit-frame">
+        <div class="hit-topbar"><span class="hit-logo">Hi!</span><span class="hit-tabs"><span>קורסים</span></span></div>
+        <div class="screen" style="padding: 26px 28px;">
+          <h1 class="s-title" style="font-size: 28px;">סיימנו את <em>הפסיכולוגיה</em> של המשחק 🏴‍☠️</h1>
+          <p class="s-sub">אחרי שלמדנו עקרונות מהפסיכולוגיה של המעורבות, הגיע הזמן להשתמש בהם.</p>
+          <div class="transition-screen" style="margin-top: 8px;">
+            <div class="transition-summary">
+              <h5>מה למדנו ביחידה הזו</h5>
+              <ul>
+                <li>מה זה HOOK ולמה הוא קריטי לפתיחת שיעור</li>
+                <li>איך נראית עקומת העניין של תלמיד</li>
+                <li>מצב FLOW — איפה הוא נמצא בין שעמום לתסכול</li>
+                <li>3 התנאים לכניסה למצב זרימה</li>
+              </ul>
+            </div>
+            <div class="coins-bag">
+              <div class="ph circle" style="width: 100px; height: 100px;"><div><div class="ph-desc" style="font-size:11px;">ערימת מטבעות</div></div></div>
+              <div class="count">12</div>
+              <div class="lbl">מטבעות זהב נצברו</div>
+            </div>
+          </div>
+          <div class="screen-bottom" style="margin-top: 14px;">
+            <div class="cta-block"><div class="compass">N</div><div class="body"><strong>בפרק הבא נעצב תבנית אישית</strong> שתעזור לכם לבנות משחק אמיתי לתלמידים שלכם.</div></div>
+            <button class="course-btn small">מעבר לפרק הבא</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="frame">
+      <div class="frame-meta">
+        <span class="label">B · BRIDGE</span>
+        <span class="name">"איפה היינו → לאן הולכים"</span>
+      </div>
+      <div class="hit-frame">
+        <div class="hit-topbar"><span class="hit-logo">Hi!</span><span class="hit-tabs"><span>קורסים</span></span></div>
+        <div class="screen" style="padding: 26px 28px;">
+          <h1 class="s-title" style="font-size: 26px; text-align: center;">המסע ממשיך</h1>
+          <div style="display: grid; grid-template-columns: 1fr 60px 1fr; gap: 12px; align-items: center; margin: 24px 0;">
+            <div style="text-align: center;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-mute); letter-spacing: 0.08em;">היחידה שסיימת</div>
+              <div style="font-weight: 800; color: var(--blue-900); margin-top: 6px;">פסיכולוגיית המשחק</div>
+              <div class="ph" style="height: 90px; margin-top: 8px;"><div><div class="ph-desc" style="font-size:11px;">פיראט עם דגל</div></div></div>
+            </div>
+            <div style="text-align: center; color: var(--red-700);">
+              <svg style="width:48px; height:24px; transform: scaleX(-1);" viewBox="0 0 120 40"><path d="M5 22 C 35 8, 70 8, 100 18 L 92 10 M 100 18 L 92 26" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+            </div>
+            <div style="text-align: center;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--red-700); letter-spacing: 0.08em;">היחידה הבאה</div>
+              <div style="font-weight: 800; color: var(--blue-900); margin-top: 6px;">בונים משחק משלך</div>
+              <div class="ph" style="height: 90px; margin-top: 8px;"><div><div class="ph-desc" style="font-size:11px;">תיבת אוצר</div></div></div>
+            </div>
+          </div>
+          <div class="insight" style="margin: 0 auto;">נצברו 12 מטבעות · 28 עוד מחכים לך</div>
+          <div class="screen-bottom" style="margin-top: 18px;">
+            <button class="course-btn small">להמשיך</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEMPLATE 5: ACTIVITY -->
+  <div class="sub-head">
+    <span class="tag">TEMPLATE · 05</span>
+    <h3>תבנית פעילות</h3>
+    <span class="note">הוראות · placeholder לפעילות (טופס/בחירה/גרירה) · כפתור סיום</span>
+  </div>
+
+  <div class="frame-row">
+    <div class="frame">
+      <div class="frame-meta">
+        <span class="label">A · BUILD</span>
+        <span class="name">בניית-משחק · טופס מילוי</span>
+      </div>
+      <div class="hit-frame">
+        <div class="hit-topbar"><span class="hit-logo">Hi!</span><span class="hit-tabs"><span>קורסים</span></span></div>
+        <div class="screen" style="padding: 26px 28px;">
+          <h1 class="s-title" style="font-size: 24px;">התבנית האישית שלכם <span class="sep">|</span> שלב 1</h1>
+          <div class="activity-instructions">
+            <strong>מה לעשות עכשיו:</strong> חישבו על תלמיד אחד ספציפי. תארו ב-3 משפטים את היעד שלו לשיעור הקרוב — בלי טכנולוגיה, רק במילים.
+          </div>
+          <div class="activity-card">
+            <div>
+              <div class="h">תיבת קלט · "היעד שלי לתלמיד"</div>
+              <div class="p">3 שורות טקסט · placeholder: "בסיום השיעור, התלמיד יוכל ל..."</div>
+            </div>
+          </div>
+          <div class="screen-bottom" style="margin-top: 18px;">
+            <button class="course-btn small">שמרתי, הבא</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="frame">
+      <div class="frame-meta">
+        <span class="label">B · CHOICE</span>
+        <span class="name">בחירה אינטראקטיבית</span>
+      </div>
+      <div class="hit-frame">
+        <div class="hit-topbar"><span class="hit-logo">Hi!</span><span class="hit-tabs"><span>קורסים</span></span></div>
+        <div class="screen" style="padding: 26px 28px;">
+          <h1 class="s-title" style="font-size: 22px;">מה משדר תסכול ומה משדר שעמום?</h1>
+          <p class="s-sub">גררו כל סיטואציה לעמודה הנכונה.</p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px;">
+            <div class="ph" style="height: 160px; border-color: var(--red-700); color: var(--red-700);">
+              <div><div class="ph-label">DROP ZONE</div><div class="ph-desc">תסכול · "קשה מדי"</div></div>
+            </div>
+            <div class="ph" style="height: 160px; border-color: var(--teal); color: var(--teal);">
+              <div><div class="ph-label">DROP ZONE</div><div class="ph-desc">שעמום · "קל מדי"</div></div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px; margin-top: 14px; justify-content: center; flex-wrap: wrap;">
+            <span style="background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; font-size: 13px; color: var(--ink);">סיטואציה 1</span>
+            <span style="background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; font-size: 13px; color: var(--ink);">סיטואציה 2</span>
+            <span style="background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; font-size: 13px; color: var(--ink);">סיטואציה 3</span>
+            <span style="background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; font-size: 13px; color: var(--ink);">סיטואציה 4</span>
+          </div>
+          <div class="screen-bottom" style="margin-top: 14px;">
+            <button class="course-btn small">בדיקה</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 07 — SUGGESTED SCREENS FOR UNIT 1
+     ============================================================ -->
+<section class="part" id="screens">
+  <header class="part-head">
+    <div class="part-num">07 / SCREENS</div>
+    <div>
+      <h2>מסכים מוצעים — יחידה 1</h2>
+      <p class="lede">לקח 1 מהקורס הקיים: יש בו רגעי-תאוריה מצוינים אבל חסרים בו מסכי-עוגן רגשיים. הנה ההצעות שלי, מסומנות לפי מקום בזרימה.</p>
+    </div>
+  </header>
+
+  <!-- Screen 1: Unit Opening -->
+  <div class="sub-head">
+    <span class="tag">NEW · 01</span>
+    <h3>מסך פתיחת יחידה</h3>
+    <span class="note">מופיע פעם אחת, לפני HOOK הראשון</span>
+  </div>
+  <p class="body-copy" style="margin-bottom: 14px;">
+    הקורס היום זורק את הלומד ישר ל-HOOK. אני מציעה לתת לו רגע נשימה: שם היחידה, הבטחת ערך, ופיראט שמחכה. דרמטי בלי להיות מתחמק.
+  </p>
+  <div class="frame-row cols-1">
+    <div class="frame">
+      <div class="hit-frame">
+        <div class="hit-topbar"><span class="hit-logo">Hi!</span><span class="hit-tabs"><span>קורסים</span></span></div>
+        <div class="screen unit-intro" style="padding: 40px 48px; min-height: 460px;">
+          <div class="screen-grid title-left">
+            <div>
+              <div class="unit-eyebrow">יחידה 01 · הפסיכולוגיה של המשחקים</div>
+              <h1 class="unit-hook">למה תלמידים <span style="color: var(--red-700)">מאבדים עניין</span> אחרי 12 דקות?</h1>
+              <p class="unit-promise">
+                ביחידה הזאת נבין מה קורה במוח של תלמיד בזמן שיעור פרטי — ולמה משחקים מצליחים לעשות מה שאנחנו, לפעמים, לא.
+              </p>
+              <div class="unit-checklist">
+                <div class="ch">מה זה HOOK ואיך פותחים שיעור בו</div>
+                <div class="ch">עקומת העניין — לאן הולכים תלמידים שמשתעממים</div>
+                <div class="ch">איך נכנסים למצב זרימה (FLOW)</div>
+                <div class="ch">3 העקרונות שתלמדו ליישם מחר בבוקר</div>
+              </div>
+            </div>
+            <div class="screen-side-illus">
+              <div class="ph" style="height: 280px;">
+                <div><div class="ph-label">ILLUSTRATION</div><div class="ph-desc">פיראט שמח שעומד על תיבת אוצר — תנוחת "מחכה לך"</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="screen-bottom" style="margin-top: 28px;">
+            <button class="course-btn">בואו נתחיל</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 2: Why this matters to you -->
+  <div class="sub-head">
+    <span class="tag">NEW · 02</span>
+    <h3>מסך "למה זה חשוב לך"</h3>
+    <span class="note">מופיע אחרי ה-HOOK · לפני התאוריה הראשונה</span>
+  </div>
+  <p class="body-copy" style="margin-bottom: 14px;">
+    זה המסך החסר. הוא לוקח את התאוריה ואומר: "אלה הצרות שלך, וזה איך נפתור אותן בקורס הזה". בלי המסך הזה, המורה הפרטי מקבל תאוריה — איתו, הוא מקבל פתרון.
+  </p>
+  <div class="frame-row cols-1">
+    <div class="frame">
+      <div class="hit-frame">
+        <div class="hit-topbar"><span class="hit-logo">Hi!</span><span class="hit-tabs"><span>קורסים</span></span></div>
+        <div class="screen" style="padding: 36px 44px; min-height: 460px;">
+          <div class="screen-grid title-left">
+            <div>
+              <h1 class="why-quote">
+                "התלמיד שלי יושב מולי, אבל אני רואה שהוא לא איתי."
+              </h1>
+              <p style="font-size: 16px; color: var(--ink-soft); max-width: 50ch; margin: 0 0 6px;">
+                אם זה הרגיש לך מוכר, אתה במקום הנכון. כל מורה פרטי מכיר את הרגעים האלה. הם לא באים מבעיה אצלך — הם באים מכך שעדיין לא לימדו אותך איך משחקים בונים תשומת לב.
+              </p>
+              <div class="why-list">
+                <div class="why-row"><div class="ico">01</div><div>אחרי הקורס תדעי לפתוח שיעור עם <strong>HOOK</strong> שמושך את התלמיד בתוך 30 שניות.</div></div>
+                <div class="why-row"><div class="ico">02</div><div>תזהי בזמן אמת מתי תלמיד נכנס לתסכול ומתי לשעמום — ותדעי <strong>איך לכוון מחדש</strong>.</div></div>
+                <div class="why-row"><div class="ico">03</div><div>תצאי עם <strong>תבנית אישית של משחק</strong> שתוכלי להפעיל מחר בבוקר עם תלמיד אמיתי.</div></div>
+              </div>
+            </div>
+            <div class="screen-side-illus">
+              <div class="ph" style="height: 280px;">
+                <div><div class="ph-label">ILLUSTRATION</div><div class="ph-desc">פיראט עצוב/משועמם בסירה ריקה — מבט הצידה</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="screen-bottom" style="margin-top: 22px;">
+            <div class="cta-block"><div class="compass">N</div><div class="body"><strong>זה הקורס שלכם.</strong> לחצו כדי לצבור את המטבעות הראשונים שלכם.</div></div>
+            <button class="course-btn small">מוכן/ה</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 3: Reflection / Feedback -->
+  <div class="sub-head">
+    <span class="tag">NEW · 03</span>
+    <h3>מסך עצירה לחשיבה — Reflective Pause</h3>
+    <span class="note">לפני סיכום יחידה · אחרי הצגת 3 העקרונות</span>
+  </div>
+  <p class="body-copy" style="margin-bottom: 14px;">
+    רגע ייעודי שבו המורה מיישם את מה שלמד על תלמיד אמיתי שלו. שאלה רפלקטיבית פתוחה, ושטח כתיבה. התשובה לא חייבת להישמר — מספיק שהיא נכתבת.
+  </p>
+  <div class="frame-row cols-1">
+    <div class="frame">
+      <div class="hit-frame">
+        <div class="hit-topbar"><span class="hit-logo">Hi!</span><span class="hit-tabs"><span>קורסים</span></span></div>
+        <div class="screen" style="padding: 36px 44px; min-height: 420px;">
+          <div class="screen-grid title-left">
+            <div>
+              <div class="caveat" style="margin-bottom: 8px;">רגע של חשיבה — אין פה תשובה נכונה</div>
+              <div class="reflect-prompt">
+                <p class="q">חישבו על תלמיד אחד ספציפי שלכם.</p>
+                <p class="hint">מה הסיטואציה האחרונה שבה הוא איבד עניין? לפי 3 התנאים שלמדנו — אילו תנאים חסרו לו באותה סיטואציה?</p>
+              </div>
+              <div class="reflect-input"></div>
+            </div>
+            <div class="screen-side-illus">
+              <div class="ph" style="height: 260px;">
+                <div><div class="ph-label">ILLUSTRATION</div><div class="ph-desc">פיראט יושב ליד מצפן — בתנוחת מחשבה</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="screen-bottom" style="margin-top: 22px;">
+            <button class="course-btn small">סיימתי לחשוב</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 4: Unit Summary -->
+  <div class="sub-head">
+    <span class="tag">NEW · 04</span>
+    <h3>מסך סיכום יחידה</h3>
+    <span class="note">המסך האחרון של היחידה · גשר ליחידה 2</span>
+  </div>
+  <div class="frame-row cols-1">
+    <div class="frame">
+      <div class="hit-frame">
+        <div class="hit-topbar"><span class="hit-logo">Hi!</span><span class="hit-tabs"><span>קורסים</span></span></div>
+        <div class="screen" style="padding: 36px 44px; min-height: 480px;">
+          <div style="text-align: center; margin-bottom: 24px;">
+            <div class="unit-eyebrow" style="justify-content: center;">יחידה 01 · הושלמה</div>
+            <h1 class="s-title" style="font-size: 36px; margin-bottom: 8px;">סיימת את הפסיכולוגיה. <em>הפצצה</em>.</h1>
+            <p class="s-sub" style="margin: 0 auto; max-width: 50ch;">קיבלת 12 מטבעות זהב. נצברו עוד 4 כי השלמת את כל הפעילויות. אתה מוכן לבנות.</p>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 22px;">
+            <div style="background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 18px; text-align: center;">
+              <div style="font-size: 38px; font-weight: 900; color: var(--blue-700);">3</div>
+              <div style="font-size: 13px; color: var(--ink-mute);">מושגי-מפתח</div>
+              <div style="font-size: 14px; font-weight: 600; color: var(--blue-900); margin-top: 4px;">HOOK · FLOW · עקומת עניין</div>
+            </div>
+            <div style="background: var(--blue-700); color: #fff; border-radius: 14px; padding: 18px; text-align: center;">
+              <div style="font-size: 38px; font-weight: 900;">16</div>
+              <div style="font-size: 13px; opacity: 0.85;">מטבעות נצברו</div>
+              <div style="font-size: 14px; font-weight: 600; margin-top: 4px;">מתוך 60 בקורס</div>
+            </div>
+            <div style="background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 18px; text-align: center;">
+              <div style="font-size: 38px; font-weight: 900; color: var(--red-700);">1</div>
+              <div style="font-size: 13px; color: var(--ink-mute);">תבנית-משחק</div>
+              <div style="font-size: 14px; font-weight: 600; color: var(--blue-900); margin-top: 4px;">בבנייה</div>
+            </div>
+          </div>
+          <div class="cta-block" style="max-width: 100%;"><div class="compass">N</div><div class="body"><strong>ביחידה הבאה תבנו משחק אמיתי.</strong> אנחנו מצרפים תבנית פיראט אישית — תיבת אוצר ריקה שתמלאו צעד-צעד.</div></div>
+          <div class="screen-bottom" style="margin-top: 16px;">
+            <button class="course-btn">להמשיך ליחידה 2</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 08 — DO'S & DON'TS
+     ============================================================ -->
+<section class="part" id="rules">
+  <header class="part-head">
+    <div class="part-num">08 / RULES</div>
+    <div>
+      <h2>Do's &amp; Don'ts</h2>
+      <p class="lede">הכללים שיש לשמור אם רוצים שהקורס ירגיש כיצירה אחת ולא 17 קבצי קנבה שונים. בקצרה: שמרי על העולם הפיראטי, אבל אל תהפכי אותו לקרנבל.</p>
+    </div>
+  </header>
+
+  <div class="dodont-grid">
+    <div class="dodont do">
+      <div class="dodont-head"><span class="icon">✓</span> כן · עשי תמיד</div>
+      <ul>
+        <li>פיראט אחד לפחות בכל מסך. בשוליים, באייקון, או במרכז.</li>
+        <li>טקסטורת נייר-ווטרקולור כרקע — אף פעם לא לבן חלק.</li>
+        <li>כותרות במשקל 800/900, מילים אנגליות באותו משקל, ב-UPPERCASE.</li>
+        <li>בלוק תובנה תכלת + בלוק CTA תכלת עם מצפן זהב — בעקביות.</li>
+        <li>כפתור הבא צהוב-כתום, תמיד ממורכז, תמיד יחיד.</li>
+        <li>חצים מוברשים בכתב יד — אף פעם חץ Unicode (←).</li>
+        <li>הניסוח שלך, גוף שני רבים, ישיר ושואל. "גם לך קרה ש...?"</li>
+        <li>צבירת מטבעות כל סוף-מקטע — ה-CTA מציין את המילה.</li>
+      </ul>
+    </div>
+    <div class="dodont no">
+      <div class="dodont-head"><span class="icon">×</span> לא · אסור</div>
+      <ul>
+        <li>אל תוסיפי איורים פלאט/וקטוריים — רק האסטים מהבנק.</li>
+        <li>אל תשתמשי בצהוב הכפתור (<code style="background:rgba(255,255,255,0.4); padding: 0 4px;">#F4B83A</code>) לאלמנט שאינו כפתור התקדמות.</li>
+        <li>אל תכתבי טקסט-גוף ארוך באדום — רק הדגשה של שורה.</li>
+        <li>אל תערבבי פלטה ראשית ופלטה משנית באותו מסך (חוץ ממסך פתיחה).</li>
+        <li>אל תכתבי "המשתמש", "האדם הלומד" — תמיד "המורה הפרטי" או "הלומד".</li>
+        <li>אסור 2 כפתורי-פעולה במסך. אם יש "אחורה" — הוא קישור טקסטואלי קטן.</li>
+        <li>אל תכתבי "next" באנגלית בכפתור — תמיד "הבא"/"להמשיך".</li>
+        <li>אל תוסיפי מסכי-וידאו ארוכים בלי טקסט סיכום מתחת.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="palette-rules" style="margin-top: 32px; border-color: var(--blue-700); border-right-color: var(--blue-700);">
+    <h4 style="color: var(--blue-700);">בדיקת-איכות לפני פרסום</h4>
+    <ul>
+      <li>פיראט אחד נמצא במסך? ✓</li>
+      <li>טקסטורת נייר ולא לבן? ✓</li>
+      <li>יש בלוק תובנה או CTA — לא שניהם כפולים? ✓</li>
+      <li>הכפתור הראשי בצהוב והוא היחיד? ✓</li>
+      <li>מילה באנגלית נכתבת ב-UPPERCASE? ✓</li>
+      <li>הניסוח בגוף שני רבים? ✓</li>
+      <li>אם זה מסך-סיכום — יש ספירת מטבעות? ✓</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer class="page-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">עולים שלב · Design System v1.0</div>
+    <div class="footer-meta">נבנה ככלי עבודה לצוות התוכן · מאי 2026</div>
+  </div>
+</footer>
+
+</body>
+</html>

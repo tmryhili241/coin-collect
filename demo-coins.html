@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>הדגמה · רכיב צבירת מטבעות · עולים שלב</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper:#F5EFE0; --paper-card:#FAF6EA;
+  --blue-700:#2C4A60; --blue-600:#5B8AA0; --blue-200:#DCF0F2;
+  --red-700:#BF2A37; --red-400:#A65D6A;
+  --yellow:#F4B83A; --yellow-d:#E0A325;
+  --ink:#2A2620; --ink-soft:#4A453E; --ink-mute:#837C70;
+  --line:rgba(31,44,76,0.12);
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--paper);font-family:'Rubik',sans-serif;color:var(--ink);}
+
+.page{max-width:1180px;margin:0 auto;padding:32px 32px 56px;}
+
+/* ===== HEADER ===== */
+.demo-header{
+  display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;gap:18px;flex-wrap:wrap;
+}
+.demo-header h1{font-size:30px;font-weight:900;color:var(--blue-700);margin:0;letter-spacing:-0.01em;}
+.demo-header .crumb{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-mute);letter-spacing:0.1em;text-transform:uppercase;}
+
+.intro{
+  background:var(--paper-card);border:1px solid var(--line);
+  border-right:4px solid var(--blue-600);
+  border-radius:14px;padding:18px 24px;margin-bottom:32px;
+  font-size:15px;color:var(--ink);line-height:1.6;
+}
+.intro strong{color:var(--blue-700);}
+
+/* ===== VARIANT GRID ===== */
+.section-title{
+  font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--ink-mute);margin:24px 0 12px;
+}
+
+.variant-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:32px;}
+.variant-card{
+  background:var(--paper-card);border:1px solid var(--line);
+  border-radius:14px;padding:0;overflow:hidden;
+}
+.variant-head{padding:14px 18px 6px;border-bottom:1px solid var(--line);}
+.variant-head h3{font-size:15px;font-weight:800;color:var(--blue-700);margin:0 0 2px;}
+.variant-head .desc{font-size:12.5px;color:var(--ink-mute);}
+.variant-body{padding:8px;background:#FAF6EA;
+  background-image:url("assets/paper-texture.png");
+  background-size:cover;background-position:center;
+}
+.variant-body iframe{
+  width:100%; height:420px; border:none; background:transparent; display:block;
+}
+
+/* ===== LIVE EXAMPLE — inside a mock course screen ===== */
+.mock-screen{
+  background-image:url("assets/paper-texture.png");
+  background-size:cover;background-position:center;background-color:#FAF6EA;
+  border-radius:14px;padding:36px 40px 24px;border:1px solid var(--line);
+  margin-bottom:32px;box-shadow:0 4px 14px rgba(31,44,76,0.06);
+}
+.mock-screen h2{font-size:36px;font-weight:900;color:var(--blue-700);margin:0 0 8px;letter-spacing:-0.01em;}
+.mock-screen h2 .en{position:relative;display:inline-block;}
+.mock-screen h2 .en::after{content:"";position:absolute;left:0;right:0;bottom:0.05em;height:0.32em;background:#F2D547;z-index:-1;opacity:0.7;border-radius:2px;}
+.mock-screen .lead{font-size:16px;color:var(--blue-700);font-weight:500;margin:0 0 18px;max-width:60ch;}
+.mock-screen .body-text{font-size:15px;color:var(--ink);line-height:1.65;margin:0 0 12px;max-width:60ch;}
+.mock-screen .body-text strong{color:var(--blue-700);}
+.mock-screen .divider{
+  margin:24px 0 8px;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(44,74,96,0.2),transparent);
+}
+
+/* ===== HOW TO USE PANEL ===== */
+.howto{
+  background:var(--paper-card);border:1px solid var(--line);
+  border-radius:14px;padding:24px 28px;margin-top:32px;
+}
+.howto h3{font-size:18px;font-weight:800;color:var(--blue-700);margin:0 0 14px;}
+.howto-row{
+  display:grid;grid-template-columns:160px 1fr;gap:18px;
+  padding:10px 0;border-top:1px solid var(--line);
+}
+.howto-row:first-of-type{border-top:none;padding-top:0;}
+.howto-row .k{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--blue-700);font-weight:600;}
+.howto-row .v{font-size:14px;color:var(--ink);line-height:1.6;}
+.howto-row .v code{
+  background:rgba(44,74,96,0.08);color:var(--blue-700);
+  padding:1px 6px;border-radius:4px;
+  font-family:'JetBrains Mono',monospace;font-size:12px;direction:ltr;
+}
+
+/* ===== CONTROLS ===== */
+.controls{
+  background:var(--paper-card);border:1px solid var(--line);border-radius:14px;
+  padding:14px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:18px;
+}
+.controls .lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-mute);letter-spacing:0.08em;text-transform:uppercase;}
+.controls button{
+  background:#fff;border:1px solid var(--line);color:var(--blue-700);
+  border-radius:999px;padding:7px 16px;font-family:inherit;font-weight:600;
+  font-size:13px;cursor:pointer;
+}
+.controls button:hover{background:var(--blue-200);border-color:var(--blue-600);}
+.controls button.danger{color:var(--red-700);}
+
+@media (max-width:900px){
+  .variant-grid{grid-template-columns:1fr;}
+  .demo-header{flex-direction:column;align-items:flex-start;}
+  .mock-screen{padding:24px;}
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="demo-header">
+    <div>
+      <div class="crumb">עולים שלב · רכיב צבירת מטבעות</div>
+      <h1>אוצר מטבעות · רכיב אחיד לסוף סקשן</h1>
+    </div>
+  </div>
+
+  <div class="intro">
+    רכיב אחד עצמאי, מוטמע בסוף כל סקשן למידה ב-HIT.<br>
+    הלומד רואה את האוצר הנוכחי, לוחץ <strong>"אספו את המטבעות"</strong>, רואה את המטבעות עפים פנימה ומתעדכן הסכום. הסכום נשמר ב-localStorage ועובר בין מסכים.
+  </div>
+
+  <!-- ====== LIVE EXAMPLE INSIDE A COURSE SCREEN ====== -->
+  <div class="section-title">דוגמה חיה · בתוך סוף-סקשן מציאותי</div>
+
+  <div class="mock-screen">
+    <h2>סיכמנו את <span class="en">FLOW</span>.</h2>
+    <p class="lead">ראינו שמצב הזרימה הוא הקו הדק בין תסכול לשעמום.</p>
+    <p class="body-text">
+      למדנו את שלושת התנאים: <strong>מטרות ברורות</strong>, <strong>משוב מיידי</strong>, <strong>איזון בין אתגר ליכולת</strong>. תרגלנו זיהוי תסכול ושעמום בסיטואציות אמיתיות מהשיעורים שלכם.
+    </p>
+    <div class="divider"></div>
+
+    <!-- ↓↓↓ הרכיב המוטמע ↓↓↓ -->
+    <iframe
+      id="live-frame"
+      src="coin-collect.html?add=4"
+      width="100%" height="420"
+      style="border:none;display:block;background:transparent;"
+      title="צבירת מטבעות זהב">
+    </iframe>
+    <!-- ↑↑↑ -->
+  </div>
+
+  <div class="controls">
+    <span class="lbl">בקרי הדגמה ·</span>
+    <button onclick="reloadWith(2)">2 מטבעות</button>
+    <button onclick="reloadWith(4)">4 מטבעות</button>
+    <button onclick="reloadWith(7)">7 מטבעות</button>
+    <button onclick="reloadWith(12)">12 מטבעות</button>
+    <button class="danger" onclick="resetAll()">איפוס סכום · 0</button>
+    <span class="lbl" id="current-state" style="margin-inline-start:auto;">סכום באוצר: 0</span>
+  </div>
+
+  <!-- ====== VARIANTS ====== -->
+  <div class="section-title">3 וריאציות של ניסוח · כל אחת מתאימה לסקשן אחר</div>
+
+  <div class="variant-grid">
+    <div class="variant-card">
+      <div class="variant-head">
+        <h3>סיום פרק תיאוריה</h3>
+        <div class="desc">2 מטבעות · ניסוח רך</div>
+      </div>
+      <div class="variant-body">
+        <iframe src="coin-collect.html?add=2&before=סיימת+את+הפרק!+אספ%2Fי+את+שני+המטבעות+שצברת&after=%2B2+מטבעות+נכנסו+לאוצר.+כל+הכבוד!&btn=אספו+מטבעות&btnAfter=המשך" loading="lazy"></iframe>
+      </div>
+    </div>
+    <div class="variant-card">
+      <div class="variant-head">
+        <h3>סיום פעילות אינטראקטיבית</h3>
+        <div class="desc">5 מטבעות · ניסוח אנרגטי</div>
+      </div>
+      <div class="variant-body">
+        <iframe src="coin-collect.html?add=5&before=הפעלת+חשיבה+מעמיקה+—+מגיע+לך!&after=%2B5+מטבעות+על+חשיבה+פעילה+%E2%9C%A8&btn=הביתה+לאוצר!&btnAfter=הבא" loading="lazy"></iframe>
+      </div>
+    </div>
+    <div class="variant-card">
+      <div class="variant-head">
+        <h3>סיום יחידה — בונוס</h3>
+        <div class="desc">10 מטבעות · ניסוח חגיגי</div>
+      </div>
+      <div class="variant-body">
+        <iframe src="coin-collect.html?add=10&before=סיימת+יחידה+שלמה+%E2%80%94+זה+שלל+פיראטי+אמיתי&after=ענק!+%2B10+מטבעות+על+יחידה+מושלמת&btn=לאסוף+את+השלל&btnAfter=ליחידה+הבאה" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== HOW TO USE ====== -->
+  <div class="howto">
+    <h3>איך מטמיעים בסוף סקשן ב-HIT</h3>
+    <div class="howto-row">
+      <div class="k">אופציה א'</div>
+      <div class="v">
+        מטמיעים את הקובץ <code>coin-collect.html</code> כתוכן של "פסקה מעוצבת" — מעתיקים את כל הקובץ כפי שהוא, ומשנים את ערכי ה-<code>data-*</code> בתחילת ה-HTML.
+      </div>
+    </div>
+    <div class="howto-row">
+      <div class="k">אופציה ב'</div>
+      <div class="v">
+        משתמשים ב-iframe:
+        <code style="display:block;padding:8px 12px;margin-top:6px;direction:ltr;text-align:left;">
+&lt;iframe src="coin-collect.html?add=4&before=...&after=..." width="100%" height="420" style="border:none"&gt;&lt;/iframe&gt;
+        </code>
+      </div>
+    </div>
+    <div class="howto-row">
+      <div class="k">ערכים שניתן לשנות</div>
+      <div class="v">
+        <div><code>add</code> — כמה מטבעות מצטרפים (ברירת מחדל: 4)</div>
+        <div><code>before</code> — טקסט במסגרת לפני האנימציה</div>
+        <div><code>after</code> — טקסט במסגרת אחרי האנימציה (אפשר להשתמש ב-<code>{add}</code> כתחליף למספר)</div>
+        <div><code>btn</code> — טקסט בכפתור לפני</div>
+        <div><code>btnAfter</code> — טקסט בכפתור אחרי</div>
+        <div><code>total=0</code> — אם רוצים להסתיר את הסכום הכולל ולהראות רק את התוספת</div>
+        <div><code>auto=1</code> — אם רוצים שהאנימציה תרוץ אוטומטית בטעינה (ברירת מחדל: 0, מחכה ללחיצה)</div>
+      </div>
+    </div>
+    <div class="howto-row">
+      <div class="k">סנכרון בין מסכים</div>
+      <div class="v">
+        כל רכיב כותב את הסכום ל-<code>localStorage["olsCoins"]</code>. מסך הבא טוען את הסכום משם — הלומד רואה אוצר רציף בכל הקורס.
+      </div>
+    </div>
+    <div class="howto-row">
+      <div class="k">איפוס לבדיקות</div>
+      <div class="v">
+        בקונסול הדפדפן: <code>localStorage.removeItem('olsCoins')</code> או לחיצה על "איפוס סכום" כאן בעמוד.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function updateState(){
+  const v = parseInt(localStorage.getItem('olsCoins') || '0', 10);
+  document.getElementById('current-state').textContent = 'סכום באוצר: ' + v;
+}
+updateState();
+setInterval(updateState, 400);
+
+function reloadWith(add){
+  const f = document.getElementById('live-frame');
+  f.src = 'coin-collect.html?add=' + add + '&_t=' + Date.now();
+}
+
+function resetAll(){
+  localStorage.setItem('olsCoins', '0');
+  updateState();
+  // טען מחדש את כל ה-iframes כדי שיציגו 0
+  document.querySelectorAll('iframe').forEach(f => { f.src = f.src.split('&_t=')[0] + '&_t=' + Date.now(); });
+}
+
+// האזנה לעדכונים מתוך iframes
+window.addEventListener('message', (e) => {
+  if (e.data && e.data.type === 'ols-coins-updated') updateState();
+});
+</script>
+
+</body>
+</html>

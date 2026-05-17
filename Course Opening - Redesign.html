@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>עולים שלב · עיצוב מחדש לפתיחת הקורס</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&family=Caveat:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red-900:#731018; --red-700:#BF2A37; --red-400:#A65D6A;
+  --blue-100:#F2F2F2; --blue-200:#DCF0F2; --blue-300:#A3C4D9; --blue-400:#94BAD8;
+  --blue-600:#5B8AA0; --blue-700:#2C4A60; --blue-900:#1F2C4C;
+  --green:#73BA22; --teal:#368F6F; --pink:#FC66A6;
+  --sand:#D5BC91; --cream:#F2E2C4; --plum:#50445D;
+  --yellow:#F4B83A; --yellow-d:#E0A325; --highlight:#F2D547;
+  --paper:#F5EFE0; --paper-card:#FAF6EA;
+  --ink:#2A2620; --ink-soft:#4A453E; --ink-mute:#837C70;
+  --line:rgba(31,44,76,0.12);
+  --shadow-md:0 4px 14px rgba(31,44,76,0.08), 0 12px 28px rgba(31,44,76,0.07);
+  --r-md:14px;
+  --pad: clamp(20px, 4vw, 56px);
+  --max: 1280px;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:'Rubik','Helvetica Neue',Arial,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased;}
+img,svg{display:block;max-width:100%;}
+
+/* ===== RIBBON ===== */
+.ribbon{position:sticky;top:0;z-index:50;background:rgba(245,239,224,0.92);backdrop-filter:saturate(140%) blur(10px);-webkit-backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--line);}
+.ribbon-inner{max-width:var(--max);margin:0 auto;padding:14px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:24px;}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--blue-700);}
+.brand-mark{width:28px;height:28px;border-radius:8px;background:var(--blue-700);color:var(--paper);display:grid;place-items:center;font-size:14px;}
+.brand-doc{color:var(--ink-mute);font-weight:400;font-size:14px;margin-inline-start:4px;}
+.anchor-nav{display:flex;gap:2px;flex-wrap:wrap;}
+.anchor-nav a{font-size:13px;padding:6px 12px;border-radius:999px;color:var(--ink-soft);font-weight:500;text-decoration:none;}
+.anchor-nav a:hover{background:rgba(44,74,96,0.08);color:var(--blue-700);}
+
+/* ===== COVER ===== */
+.cover{max-width:var(--max);margin:0 auto;padding:72px var(--pad) 32px;}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--ink-mute);font-size:13px;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;margin-bottom:24px;}
+.eyebrow .dot{width:8px;height:8px;background:var(--red-700);border-radius:999px;}
+.cover h1{font-size:clamp(48px,7vw,84px);line-height:0.95;font-weight:900;letter-spacing:-0.025em;color:var(--blue-700);margin:0 0 16px;}
+.cover h1 .small{display:block;font-size:0.42em;font-weight:500;color:var(--ink-mute);margin-top:18px;letter-spacing:0;}
+.cover-lede{font-size:clamp(17px,1.3vw,21px);color:var(--ink-soft);max-width:64ch;margin:0 0 32px;text-wrap:pretty;}
+
+/* ===== PART ===== */
+.part{max-width:var(--max);margin:0 auto;padding:88px var(--pad) 32px;scroll-margin-top:80px;}
+.part-head{display:grid;grid-template-columns:80px 1fr;gap:24px;align-items:start;padding-bottom:28px;margin-bottom:40px;border-bottom:1px solid var(--line);}
+.part-num{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--red-700);letter-spacing:0.08em;padding-top:10px;}
+.part-head h2{font-size:clamp(32px,4vw,48px);line-height:1.05;margin:0 0 12px;color:var(--blue-700);font-weight:800;letter-spacing:-0.015em;}
+.part-head .lede{font-size:clamp(16px,1.25vw,19px);color:var(--ink-soft);max-width:70ch;margin:0;text-wrap:pretty;}
+
+.sub-head{display:flex;align-items:baseline;gap:14px;margin:48px 0 16px;flex-wrap:wrap;}
+.sub-head .tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-mute);letter-spacing:0.12em;text-transform:uppercase;}
+.sub-head h3{font-size:22px;font-weight:700;color:var(--blue-700);margin:0;}
+.sub-head .note{margin-right:auto;font-size:13px;color:var(--ink-mute);}
+
+.body-copy{font-size:16px;color:var(--ink-soft);max-width:70ch;text-wrap:pretty;}
+.body-copy p{margin:0 0 12px;}
+.body-copy strong{color:var(--ink);}
+code{font-family:'JetBrains Mono',monospace;background:rgba(44,74,96,0.08);padding:1px 6px;border-radius:4px;font-size:0.92em;}
+
+/* ===== CURRENT SCREEN ANALYSIS ===== */
+.analysis-grid{display:grid;grid-template-columns:1fr 380px;gap:36px;align-items:start;}
+.analysis-img-wrap{position:relative;border-radius:14px;overflow:hidden;box-shadow:var(--shadow-md);background:#fff;}
+.analysis-img-wrap img{width:100%;display:block;}
+.analysis-pins{position:absolute;inset:0;pointer-events:none;}
+.pin{
+  position:absolute;
+  display:flex;align-items:center;gap:6px;
+  background:var(--red-700);color:#fff;
+  font-weight:700;font-size:12px;
+  padding:4px 9px;border-radius:999px;
+  font-family:'JetBrains Mono',monospace;
+  letter-spacing:0.04em;
+  box-shadow:0 2px 6px rgba(0,0,0,0.2);
+}
+.pin .n{
+  background:rgba(255,255,255,0.25);
+  width:18px;height:18px;border-radius:999px;
+  display:grid;place-items:center;font-size:10px;
+}
+.issues-list{display:grid;gap:10px;}
+.issue{
+  background:var(--paper-card);
+  border:1px solid var(--line);
+  border-right:3px solid var(--red-700);
+  border-radius:10px;
+  padding:12px 14px;
+  display:grid;grid-template-columns:24px 1fr;gap:10px;align-items:start;
+  font-size:14px;color:var(--ink);
+}
+.issue .n{
+  background:var(--red-700);color:#fff;
+  width:22px;height:22px;border-radius:999px;
+  display:grid;place-items:center;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;font-weight:800;
+}
+.issue strong{color:var(--blue-700);display:block;margin-bottom:2px;font-size:14px;}
+.issue .det{color:var(--ink-soft);font-size:13px;}
+
+/* ===== VARIATION CARD ===== */
+.var-block{margin-bottom:48px;}
+.var-meta{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:14px;flex-wrap:wrap;}
+.var-meta .left h4{font-size:24px;font-weight:800;color:var(--blue-700);margin:0 0 4px;letter-spacing:-0.01em;}
+.var-meta .left .when{font-size:14px;color:var(--ink-soft);}
+.var-meta .right{display:flex;gap:8px;flex-wrap:wrap;}
+.var-tag{
+  background:var(--paper-card);border:1px solid var(--line);
+  border-radius:999px;padding:5px 12px;font-size:12px;color:var(--ink-soft);font-weight:500;
+}
+.var-tag.primary{background:var(--blue-700);color:#fff;border-color:var(--blue-700);}
+
+/* ===== HIT FRAME + SCREEN ===== */
+.hit-frame{background:#2B313A;border-radius:12px;overflow:hidden;box-shadow:var(--shadow-md);border:1px solid rgba(0,0,0,0.1);}
+.hit-topbar{height:36px;background:#2B313A;display:flex;align-items:center;padding:0 14px;gap:14px;color:#B6BDC8;font-size:11px;border-bottom:1px solid rgba(255,255,255,0.05);}
+.hit-topbar .hit-toggle{font-size:10px;opacity:0.7;}
+.hit-topbar .hit-logo{background:#fff;color:#2B313A;font-weight:800;font-size:11px;padding:2px 6px;border-radius:3px;margin-inline-start:auto;letter-spacing:-0.02em;}
+.hit-topbar .hit-tabs{display:flex;gap:14px;}
+.hit-topbar .hit-tabs span{opacity:0.7;}
+
+.screen{
+  background-image:url("assets/paper-texture.png");
+  background-size:cover;background-position:center;background-color:#FAF6EA;
+  padding:48px 56px;min-height:560px;position:relative;font-family:'Rubik',sans-serif;color:var(--ink);
+}
+
+/* ===== PLACEHOLDERS ===== */
+.ph{
+  position:relative;display:grid;place-items:center;text-align:center;
+  border:2px dashed var(--blue-600);border-radius:16px;
+  background:repeating-linear-gradient(135deg,rgba(91,138,160,0.06) 0,rgba(91,138,160,0.06) 8px,transparent 8px,transparent 16px);
+  color:var(--blue-700);padding:14px;min-height:60px;
+}
+.ph-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.06em;color:var(--blue-700);text-transform:uppercase;opacity:0.6;margin-bottom:6px;}
+.ph-desc{font-size:13px;font-weight:600;color:var(--blue-700);line-height:1.3;max-width:22ch;}
+.ph.small{padding:10px;min-height:48px;}
+.ph.small .ph-desc{font-size:11.5px;}
+
+/* ===== COURSE BUTTON ===== */
+.course-btn{
+  background:var(--yellow);color:var(--blue-700);border:none;border-radius:999px;
+  padding:14px 56px;font-family:inherit;font-weight:800;font-size:20px;
+  box-shadow:0 5px 0 var(--yellow-d);cursor:pointer;letter-spacing:0.02em;
+}
+.course-btn.small{font-size:15px;padding:10px 32px;box-shadow:0 4px 0 var(--yellow-d);}
+.course-btn.large{font-size:22px;padding:16px 64px;}
+
+/* ===== CTA BLOCK ===== */
+.cta-block{
+  background:var(--blue-600);color:#fff;border-radius:16px;
+  padding:16px 22px;display:flex;align-items:center;gap:16px;max-width:520px;
+}
+.cta-block .compass{
+  width:50px;height:50px;flex-shrink:0;border-radius:999px;
+  background:radial-gradient(circle at 32% 30%,#FFE598 0%,#E5B339 55%,#B68119 100%);
+  border:3px solid #6B4A12;display:grid;place-items:center;color:#4A3209;
+  font-weight:900;font-size:14px;font-family:'JetBrains Mono',monospace;
+}
+.cta-block .body{font-size:14px;line-height:1.4;font-weight:600;}
+.cta-block .body strong{display:block;font-weight:800;font-size:15px;margin-bottom:2px;}
+
+/* ===== HIGHLIGHT UNDER EN ===== */
+.hl-en{position:relative;display:inline-block;z-index:0;}
+.hl-en::after{content:"";position:absolute;left:0;right:0;bottom:0.05em;height:0.32em;background:var(--highlight);z-index:-1;opacity:0.7;border-radius:2px;}
+
+/* ===== VARIATION A — EDITORIAL HERO ===== */
+.var-a{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center;}
+.var-a .course-label{
+  font-family:'JetBrains Mono',monospace;font-size:13px;
+  color:var(--red-700);letter-spacing:0.16em;text-transform:uppercase;
+  display:flex;align-items:center;gap:10px;margin-bottom:18px;
+}
+.var-a .course-label::after{
+  content:"";flex:1;height:1px;
+  background:linear-gradient(90deg,var(--red-700),transparent);max-width:100px;
+}
+.var-a h1.hero{
+  font-size:80px;font-weight:900;color:var(--blue-700);
+  margin:0 0 6px;line-height:0.92;letter-spacing:-0.03em;
+}
+.var-a .promise-en{
+  font-size:16px;color:var(--blue-700);font-weight:600;
+  letter-spacing:0.06em;direction:ltr;text-align:right;
+  margin:0 0 18px;
+}
+.var-a .promise-en .pipe{color:var(--ink-mute);margin:0 6px;}
+.var-a .promise-line{
+  font-size:24px;color:var(--blue-700);font-weight:600;line-height:1.3;
+  margin:0 0 22px;max-width:24ch;
+}
+.var-a .promise-line strong{color:var(--red-400);font-weight:800;}
+.var-a .points{display:grid;gap:12px;margin-bottom:26px;}
+.var-a .pt{display:grid;grid-template-columns:32px 1fr;gap:14px;align-items:start;}
+.var-a .pt .n{
+  width:32px;height:32px;border-radius:999px;
+  background:var(--blue-600);color:#fff;
+  display:grid;place-items:center;font-weight:900;
+  font-family:'JetBrains Mono',monospace;font-size:13px;
+}
+.var-a .pt .txt{font-size:15.5px;color:var(--ink);line-height:1.5;font-weight:500;}
+.var-a .pt .txt strong{color:var(--blue-700);font-weight:800;}
+.var-a-illus{
+  position:relative;display:grid;place-items:center;
+}
+
+/* ===== VARIATION B — JOURNEY MAP ===== */
+.var-b{position:relative;}
+.var-b .title-row{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px;gap:20px;}
+.var-b h1.title{font-size:64px;font-weight:900;color:var(--blue-700);margin:0;line-height:0.95;letter-spacing:-0.02em;}
+.var-b .title-row .sub{
+  font-size:14px;color:var(--ink-soft);max-width:30ch;text-align:left;
+  border-right:3px solid var(--red-400);padding-right:14px;font-weight:500;
+}
+.var-b .title-row .sub .en{
+  display:block;font-family:'JetBrains Mono',monospace;font-size:11px;
+  color:var(--red-400);letter-spacing:0.12em;margin-bottom:4px;
+}
+.var-b .map-wrap{
+  position:relative;padding:40px 24px 24px;
+  background:rgba(220,240,242,0.4);
+  border-radius:18px;
+  border:1px dashed rgba(91,138,160,0.4);
+}
+.var-b .map-path{
+  position:absolute;inset:0;pointer-events:none;
+}
+.var-b .stops{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;position:relative;z-index:1;}
+.var-b .stop{
+  background:var(--paper-card);
+  border-radius:14px;padding:18px 16px 20px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.05);
+  border:1px solid var(--line);
+  display:grid;gap:8px;text-align:center;
+}
+.var-b .stop .num{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  color:var(--red-700);letter-spacing:0.1em;font-weight:600;
+}
+.var-b .stop h5{font-size:17px;font-weight:800;color:var(--blue-700);margin:0;line-height:1.2;}
+.var-b .stop p{font-size:12.5px;color:var(--ink-soft);margin:4px 0 0;line-height:1.4;}
+.var-b .stop .icon-slot{
+  width:60px;height:60px;margin:6px auto 4px;
+  display:grid;place-items:center;
+  background:linear-gradient(180deg,var(--blue-200),transparent);
+  border-radius:999px;
+}
+.var-b .stop.final{
+  background:var(--blue-700);color:#fff;
+}
+.var-b .stop.final .num{color:#FFD062;}
+.var-b .stop.final h5{color:#fff;}
+.var-b .stop.final p{color:rgba(255,255,255,0.85);}
+.var-b .stop.final .icon-slot{background:rgba(255,255,255,0.1);}
+.var-b .bottom-row{display:flex;justify-content:space-between;align-items:center;margin-top:24px;gap:20px;flex-wrap:wrap;}
+
+/* ===== VARIATION C — SPLIT PROMISE ===== */
+.var-c{display:grid;grid-template-columns:1fr 0.95fr;gap:40px;align-items:stretch;}
+.var-c .left-col{display:flex;flex-direction:column;justify-content:center;}
+.var-c .course-label{
+  font-family:'JetBrains Mono',monospace;font-size:12px;
+  color:var(--red-700);letter-spacing:0.18em;text-transform:uppercase;
+  margin-bottom:12px;
+}
+.var-c h1{font-size:60px;font-weight:900;color:var(--blue-700);margin:0 0 6px;line-height:0.95;letter-spacing:-0.02em;}
+.var-c .tagline{font-size:18px;color:var(--ink-soft);font-weight:500;margin:0 0 22px;}
+.var-c .tagline .en{font-family:'Rubik',sans-serif;color:var(--blue-700);font-weight:700;letter-spacing:0.04em;}
+.var-c .promise-card{
+  background:var(--paper-card);border-right:4px solid var(--blue-600);
+  border-radius:12px;padding:18px 22px;margin:0 0 22px;
+  font-size:16px;color:var(--ink);line-height:1.55;max-width:40ch;
+}
+.var-c .promise-card .lb{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  color:var(--blue-600);letter-spacing:0.12em;text-transform:uppercase;
+  margin-bottom:6px;display:block;font-weight:600;
+}
+.var-c .promise-card strong{color:var(--blue-700);}
+.var-c .cta-row{display:flex;align-items:center;gap:16px;}
+.var-c .meta-tags{display:flex;gap:6px;margin-top:18px;}
+.var-c .meta-tags span{
+  font-size:12px;background:var(--paper-card);border:1px solid var(--line);
+  padding:5px 10px;border-radius:999px;color:var(--ink-soft);
+}
+.var-c .right-col{position:relative;}
+.var-c .preview-card{
+  background:#fff;border-radius:14px;padding:18px;
+  box-shadow:var(--shadow-md);transform:rotate(-1.5deg);
+  margin-top:14px;border:1px solid var(--line);
+}
+.var-c .preview-card .lb{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  color:var(--red-400);letter-spacing:0.12em;text-transform:uppercase;
+  margin-bottom:10px;font-weight:600;
+}
+.var-c .preview-card h5{font-size:18px;font-weight:800;color:var(--blue-700);margin:0 0 10px;}
+.var-c .preview-steps{display:grid;gap:6px;margin-bottom:12px;}
+.var-c .preview-steps .ps{
+  display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:center;
+  font-size:13px;color:var(--ink-soft);
+}
+.var-c .preview-steps .ps .n{
+  width:20px;height:20px;border-radius:999px;background:var(--blue-200);
+  color:var(--blue-700);display:grid;place-items:center;
+  font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:800;
+}
+.var-c .process-strip{
+  margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+}
+.var-c .process-strip .ps-card{
+  background:var(--paper-card);border:1px solid var(--line);
+  border-radius:10px;padding:12px 14px;
+}
+.var-c .process-strip .ps-card .n{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  color:var(--red-400);letter-spacing:0.1em;font-weight:600;margin-bottom:4px;
+}
+.var-c .process-strip .ps-card h6{font-size:13.5px;font-weight:800;color:var(--blue-700);margin:0 0 2px;}
+.var-c .process-strip .ps-card p{font-size:11.5px;color:var(--ink-soft);margin:0;line-height:1.4;}
+
+/* ===== ANNOTATIONS ===== */
+.annot-wrap{position:relative;}
+.annot{
+  position:absolute;font-family:'Caveat',cursive;font-weight:600;
+  color:var(--red-700);font-size:16px;line-height:1.15;
+  background:var(--paper-card);border-radius:8px;padding:4px 10px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.08);pointer-events:none;
+  display:flex;align-items:center;gap:8px;white-space:nowrap;
+}
+.annot::before{content:"";width:14px;height:1.5px;background:var(--red-700);border-radius:1px;}
+.annot.left::before{order:2;}
+
+/* ===== RECOMMENDATION ===== */
+.rec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.rec-card{
+  background:var(--paper-card);border:1px solid var(--line);border-radius:14px;
+  padding:20px 22px;display:grid;gap:6px;
+}
+.rec-card .lbl{
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  color:var(--red-400);letter-spacing:0.1em;font-weight:600;margin-bottom:6px;
+}
+.rec-card h5{font-size:16px;font-weight:800;color:var(--blue-700);margin:0;}
+.rec-card p{font-size:13.5px;color:var(--ink-soft);margin:4px 0 0;line-height:1.5;}
+.rec-card.pick{background:var(--blue-700);color:#fff;border-color:var(--blue-700);}
+.rec-card.pick .lbl{color:#FFD062;}
+.rec-card.pick h5{color:#fff;}
+.rec-card.pick p{color:rgba(255,255,255,0.88);}
+
+.template-summary{
+  background:var(--paper-card);border:1px solid var(--line);border-radius:14px;
+  padding:24px 28px;margin-top:28px;
+}
+.template-summary h4{
+  font-family:'JetBrains Mono',monospace;color:var(--ink-mute);
+  font-size:12px;letter-spacing:0.12em;text-transform:uppercase;
+  margin:0 0 16px;
+}
+.template-summary .row{
+  display:grid;grid-template-columns:140px 1fr;gap:18px;align-items:start;
+  padding:12px 0;border-top:1px solid var(--line);
+}
+.template-summary .row:first-of-type{border-top:none;padding-top:0;}
+.template-summary .row .k{
+  font-size:13px;font-weight:700;color:var(--blue-700);
+}
+.template-summary .row .v{font-size:14px;color:var(--ink);line-height:1.55;}
+.template-summary .row .v code{font-size:0.92em;}
+
+/* ===== FOOTER ===== */
+.page-footer{max-width:var(--max);margin:80px auto 0;padding:32px var(--pad) 56px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-mute);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.page-footer .brand{font-weight:700;color:var(--blue-700);}
+
+@media (max-width:1050px){
+  .anchor-nav{display:none;}
+  .analysis-grid,.var-a,.var-c{grid-template-columns:1fr;}
+  .var-b .stops{grid-template-columns:1fr 1fr;}
+  .rec-grid,.var-c .process-strip{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="watercolorEdge"><feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="2" seed="5"/><feDisplacementMap in="SourceGraphic" scale="9"/></filter>
+    <symbol id="pathArrow" viewBox="0 0 200 30">
+      <path d="M2 15 C 40 5, 80 25, 120 12 S 180 18, 196 12 L 188 5 M 196 12 L 188 19"
+            fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+            filter="url(#watercolorEdge)" stroke-dasharray="2 6"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="ribbon">
+  <div class="ribbon-inner">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">⚓</span>
+      <span>עולים שלב</span>
+      <span class="brand-doc">· עיצוב מחדש לפתיחת הקורס</span>
+    </div>
+    <nav class="anchor-nav">
+      <a href="#current">01 הניתוח</a>
+      <a href="#var-a">02 וריאציה A</a>
+      <a href="#var-b">03 וריאציה B</a>
+      <a href="#var-c">04 וריאציה C</a>
+      <a href="#recommend">05 המלצה + תבנית</a>
+    </nav>
+  </div>
+</header>
+
+<section class="cover">
+  <div class="eyebrow">
+    <span class="dot"></span>
+    <span>פתיחת הקורס · ניתוח + 3 הצעות + תבנית</span>
+  </div>
+  <h1>
+    מסך הפתיחה
+    <span class="small">לקחתי את המסך שיש לך, ניתחתי 7 דברים שאפשר לחדד, ובניתי 3 כיוונים שונים — מכל אחד אפשר לקחת רעיון.</span>
+  </h1>
+</section>
+
+<main>
+
+<!-- ============== CURRENT SCREEN ANALYSIS ============== -->
+<section class="part" id="current">
+  <header class="part-head">
+    <div class="part-num">01 / ANALYSIS</div>
+    <div>
+      <h2>המסך הקיים — מה אפשר לחדד</h2>
+      <p class="lede">המסך עובד, אבל יש בו כמה דברים שמושכים את העין למקומות לא נכונים. 7 הנקודות הקריטיות:</p>
+    </div>
+  </header>
+
+  <div class="analysis-grid">
+    <div class="analysis-img-wrap">
+      <img src="refs/course-opening-current.png" alt="מסך הפתיחה הנוכחי">
+      <div class="analysis-pins">
+        <div class="pin" style="top:8%; right:14%;"><span class="n">1</span> טעות הקלדה</div>
+        <div class="pin" style="top:5%; left:5%;"><span class="n">2</span> פיסת ריקנות</div>
+        <div class="pin" style="top:14%; left:24%;"><span class="n">3</span> בלוק מבודד</div>
+        <div class="pin" style="top:36%; right:48%;"><span class="n">4</span> אין CTA</div>
+        <div class="pin" style="top:64%; right:14%;"><span class="n">5</span> 3 קלפים שווים</div>
+        <div class="pin" style="top:64%; left:34%;"><span class="n">6</span> פיראט רק על אחד</div>
+        <div class="pin" style="top:8%; left:36%;"><span class="n">7</span> מצפן מנותק</div>
+      </div>
+    </div>
+
+    <div class="issues-list">
+      <div class="issue"><div class="n">1</div><div><strong>טעות הקלדה בכותרת המשנה</strong><div class="det">"<strong style="color:var(--red-700)">משעור</strong> פרטי לשיעור חוויתי" → צריך להיות "<strong style="color:var(--teal)">משיעור</strong>".</div></div></div>
+
+      <div class="issue"><div class="n">2</div><div><strong>פיסת ריקנות בפינה השמאלית העליונה</strong><div class="det">יש שם איזה badge קטן צף בלי תפקיד. או למלא במשמעות, או להסיר.</div></div></div>
+
+      <div class="issue"><div class="n">3</div><div><strong>בלוק "בסיום הקורס" מבודד</strong><div class="det">הוא ההבטחה הכי חשובה של הקורס — אבל הוא צף משמאל כמו ציטוט אקראי. הוא צריך להיות במרכז התשומת לב.</div></div></div>
+
+      <div class="issue"><div class="n">4</div><div><strong>אין קריאה לפעולה</strong><div class="det">המסך לא אומר לי איך מתחילים. אין כפתור צהוב. הלומד צריך לסרוק את המסך ולהבין לבד.</div></div></div>
+
+      <div class="issue"><div class="n">5</div><div><strong>3 הקלפים שווים מדי</strong><div class="det">"מטבעות", "תבנית", "פסיכולוגיה" — כל אחד מהם הוא דבר אחר לחלוטין: גמול, תוצר, ותוכן. כשהם נראים זהים, הלומד לא מבין שהוא מסתכל על שלוש דרגות שונות של ערך.</div></div></div>
+
+      <div class="issue"><div class="n">6</div><div><strong>פיראט מופיע רק על קלף אחד</strong><div class="det">חוק האחד שכתבת בעצמך: פיראט בכל מסך. כאן הוא רק על "הפסיכולוגיה" — אז שני האחרים מרגישים פחות שייכים לקורס.</div></div></div>
+
+      <div class="issue"><div class="n">7</div><div><strong>המצפן בפינה הימנית-עליונה מנותק</strong><div class="det">אסט יפה, אבל הוא לא קשור לכלום. במסכי הקורס המצפן מופיע ליד CTA — כאן הוא חסר תפקיד.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== VARIATION A — EDITORIAL HERO ============== -->
+<section class="part" id="var-a">
+  <header class="part-head">
+    <div class="part-num">02 / VARIATION A</div>
+    <div>
+      <h2>וריאציה A · Editorial Hero</h2>
+      <p class="lede">היררכיה ברורה, פיראט אחד גדול בצד, 3 נקודות-ערך ממוספרות (לא קלפים), כפתור התחלה ברור. הכי נאמן למסכי-הקורס הקיימים — מרגיש "אותו עולם".</p>
+    </div>
+  </header>
+
+  <div class="var-block">
+    <div class="var-meta">
+      <div class="left">
+        <h4>פתיחת קורס · גישה עיתונאית</h4>
+        <div class="when">המתאימה ביותר לקורס שיש לו זהות עיצובית קיימת ולא רוצים להסיט ממנה.</div>
+      </div>
+      <div class="right">
+        <span class="var-tag">היררכיה ברורה</span>
+        <span class="var-tag">CTA מובהק</span>
+        <span class="var-tag">עולם פיראטי שמרני</span>
+      </div>
+    </div>
+
+    <div class="annot-wrap">
+      <div class="hit-frame">
+        <div class="hit-topbar">
+          <span class="hit-toggle">מצב עריכה</span>
+          <span class="hit-tabs"><span>הקורסים שלי</span><span>לוח מודעות</span><span>מטלות</span></span>
+          <span class="hit-logo">Hi!</span>
+        </div>
+        <div class="screen var-a">
+          <div>
+            <div class="course-label">קורס מעשי · GBL · GAME BASED LEARNING</div>
+            <h1 class="hero">עולים שלב</h1>
+            <p class="promise-en">משיעור פרטי <span class="pipe">→</span> לשיעור חווייתי</p>
+            <p class="promise-line">
+              תצאו עם <strong>משחק לימודי מותאם אישית</strong> — לתחום שלכם, ללומדים שלכם, מוכן להפעלה ביום ראשון בבוקר.
+            </p>
+            <div class="points">
+              <div class="pt"><span class="n">01</span><span class="txt">נלמד את <strong>הפסיכולוגיה של המעורבות</strong> — מה מחזיק תלמיד פיראט בעניין.</span></div>
+              <div class="pt"><span class="n">02</span><span class="txt">נמלא <strong>תבנית אפיון</strong> צעד-אחר-צעד — מרעיון לתוכנית עבודה אמיתית.</span></div>
+              <div class="pt"><span class="n">03</span><span class="txt">נצבור <strong>מטבעות זהב</strong> בדרך — צידה לדרך וכלים מעשיים בסוף הקורס.</span></div>
+            </div>
+            <button class="course-btn large">בואו נתחיל</button>
+          </div>
+          <div class="var-a-illus">
+            <div class="ph" style="height:380px;width:100%;max-width:340px;">
+              <div>
+                <div class="ph-label">ILLUSTRATION</div>
+                <div class="ph-desc">פיראט גדול עומד על תיבת אוצר — תנוחת "מחכה לך", דגל מורם, מצפן ביד</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="annot" style="top:90px;right:-110px;">תווית קורס + מונח אנגלי</div>
+      <div class="annot" style="top:160px;right:-90px;">כותרת מסיבית (80px)</div>
+      <div class="annot" style="top:280px;right:-110px;">הבטחת ערך מודגשת</div>
+      <div class="annot" style="top:410px;right:-110px;">3 נקודות ממוספרות</div>
+      <div class="annot" style="bottom:90px;right:-100px;">CTA יחיד וברור</div>
+      <div class="annot left" style="top:280px;left:-110px;">פיראט אחד גדול</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== VARIATION B — JOURNEY MAP ============== -->
+<section class="part" id="var-b">
+  <header class="part-head">
+    <div class="part-num">03 / VARIATION B</div>
+    <div>
+      <h2>וריאציה B · Journey Map</h2>
+      <p class="lede">הקורס כמסע — 4 תחנות, נתיב מקווקו ביניהן, התחנה האחרונה היא היעד (המשחק המוכן). פחות מטא, יותר חוויה. הכי נאמן לעולם הפיראטי.</p>
+    </div>
+  </header>
+
+  <div class="var-block">
+    <div class="var-meta">
+      <div class="left">
+        <h4>פתיחת קורס · גישת מפת מסע</h4>
+        <div class="when">כשרוצים שהפתיחה תרגיש כמו תחילתו של משחק, לא כמו הקדמה לקורס.</div>
+      </div>
+      <div class="right">
+        <span class="var-tag">חוויית משחק</span>
+        <span class="var-tag">מסע ויזואלי</span>
+        <span class="var-tag">פיראטים בשיא</span>
+      </div>
+    </div>
+
+    <div class="annot-wrap">
+      <div class="hit-frame">
+        <div class="hit-topbar">
+          <span class="hit-toggle">מצב עריכה</span>
+          <span class="hit-tabs"><span>הקורסים שלי</span><span>לוח מודעות</span><span>מטלות</span></span>
+          <span class="hit-logo">Hi!</span>
+        </div>
+        <div class="screen var-b">
+          <div class="title-row">
+            <h1 class="title">עולים שלב</h1>
+            <div class="sub">
+              <span class="en">GBL · GAME BASED LEARNING</span>
+              קורס מעשי למורים פרטיים — משיעור פרטי לשיעור חווייתי
+            </div>
+          </div>
+
+          <p style="font-size:16px;color:var(--ink);margin:0 0 18px;max-width:60ch;font-weight:500;">
+            המסע שלך הוא מסע פיראטי. ארבע תחנות עד שתחזיק ביד <strong style="color:var(--red-400);">משחק לימודי מוכן</strong> לתלמידים שלך.
+          </p>
+
+          <div class="map-wrap">
+            <svg style="position:absolute; left:0; right:0; top:50%; width:100%; height:30px; transform:translateY(-50%); color:var(--blue-600); opacity:0.5;" preserveAspectRatio="none" viewBox="0 0 200 30">
+              <use href="#pathArrow"/>
+            </svg>
+            <div class="stops">
+              <div class="stop">
+                <div class="num">תחנה · 01</div>
+                <div class="icon-slot">
+                  <div class="ph small" style="width:54px;height:54px;border:1.5px dashed var(--blue-600);"><div><div class="ph-desc" style="font-size:9px;">פיראט במים</div></div></div>
+                </div>
+                <h5>הפסיכולוגיה</h5>
+                <p>מבינים מה מחזיק תלמיד בעניין — HOOK · FLOW · 3 העקרונות.</p>
+              </div>
+              <div class="stop">
+                <div class="num">תחנה · 02</div>
+                <div class="icon-slot">
+                  <div class="ph small" style="width:54px;height:54px;border:1.5px dashed var(--blue-600);"><div><div class="ph-desc" style="font-size:9px;">מצפן</div></div></div>
+                </div>
+                <h5>תבנית האפיון</h5>
+                <p>ממלאים תבנית מלווה — צעד-אחר-צעד מרעיון לתוכנית.</p>
+              </div>
+              <div class="stop">
+                <div class="num">תחנה · 03</div>
+                <div class="icon-slot">
+                  <div class="ph small" style="width:54px;height:54px;border:1.5px dashed var(--blue-600);"><div><div class="ph-desc" style="font-size:9px;">מטבע זהב</div></div></div>
+                </div>
+                <h5>צוברים מטבעות</h5>
+                <p>צידה לדרך וכלים שתשלפו בסוף הקורס.</p>
+              </div>
+              <div class="stop final">
+                <div class="num">היעד</div>
+                <div class="icon-slot">
+                  <div class="ph small" style="width:54px;height:54px;border:1.5px dashed rgba(255,255,255,0.5);background:rgba(255,255,255,0.05);"><div><div class="ph-desc" style="font-size:9px;color:#fff;">תיבת אוצר</div></div></div>
+                </div>
+                <h5>המשחק שלך</h5>
+                <p>משחק לימודי מותאם — לתחום שלך, ללומדים שלך.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bottom-row">
+            <div style="font-size:14px;color:var(--ink-soft);max-width:34ch;">
+              <strong style="color:var(--blue-700);">סך הכל:</strong> ~60 מטבעות זהב לאסוף · 2 יחידות לימוד · משחק אחד שלך.
+            </div>
+            <button class="course-btn">להרים עוגן</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="annot" style="top:90px;right:-110px;">כותרת + תיוג GBL מקופצים</div>
+      <div class="annot" style="top:200px;right:-100px;">משפט פתיחה אישי</div>
+      <div class="annot" style="top:320px;right:-110px;">4 תחנות במסע</div>
+      <div class="annot left" style="top:320px;left:-130px;">היעד = המשחק המוכן</div>
+      <div class="annot" style="bottom:80px;right:-110px;">סיכום כמותי</div>
+      <div class="annot left" style="bottom:80px;left:-100px;">CTA מטאפורי</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== VARIATION C — SPLIT PROMISE ============== -->
+<section class="part" id="var-c">
+  <header class="part-head">
+    <div class="part-num">04 / VARIATION C</div>
+    <div>
+      <h2>וריאציה C · Split Promise</h2>
+      <p class="lede">חוצים את המסך: מימין הכותרת + ההבטחה + הכפתור. משמאל — תצוגה מוקדמת אמיתית של "תבנית האפיון" — הלומד רואה מה הוא יקבל. הכי "מודרני" וקרוב לדפי-נחיתה.</p>
+    </div>
+  </header>
+
+  <div class="var-block">
+    <div class="var-meta">
+      <div class="left">
+        <h4>פתיחת קורס · גישת הבטחה-וראיה</h4>
+        <div class="when">כשהתוצר הסופי כל-כך מובהק שכדאי להראות אותו כבר עכשיו.</div>
+      </div>
+      <div class="right">
+        <span class="var-tag">ראיה לתוצר</span>
+        <span class="var-tag">קונקרטי</span>
+        <span class="var-tag">פחות פיראטי</span>
+      </div>
+    </div>
+
+    <div class="annot-wrap">
+      <div class="hit-frame">
+        <div class="hit-topbar">
+          <span class="hit-toggle">מצב עריכה</span>
+          <span class="hit-tabs"><span>הקורסים שלי</span><span>לוח מודעות</span><span>מטלות</span></span>
+          <span class="hit-logo">Hi!</span>
+        </div>
+        <div class="screen var-c">
+          <div class="left-col">
+            <div class="course-label">קורס מעשי · 2 יחידות · ~3 שעות לימוד</div>
+            <h1>עולים שלב</h1>
+            <p class="tagline">משיעור פרטי לשיעור חווייתי <span class="en">· GBL</span></p>
+            <div class="promise-card">
+              <span class="lb">בסיום הקורס</span>
+              תצאו עם <strong>משחק לימודי מותאם אישית</strong> — בהתאם לתחום בו אתם מלמדים, והכי חשוב, בהתאם ללומדים שלכם.
+            </div>
+            <div class="cta-row">
+              <button class="course-btn">בואו נתחיל</button>
+              <span class="caveat" style="font-family:'Caveat',cursive;font-size:20px;color:var(--plum);">5 דקות לפרק הראשון →</span>
+            </div>
+            <div class="meta-tags">
+              <span>למורים פרטיים</span>
+              <span>אוריינות דיגיטלית בינונית</span>
+              <span>במחשב/טאבלט</span>
+            </div>
+          </div>
+          <div class="right-col">
+            <div class="ph" style="height:140px;margin-bottom:8px;">
+              <div><div class="ph-label">ILLUSTRATION</div><div class="ph-desc">פיראט קטן עם מפה — צף מעל הכרטיס</div></div>
+            </div>
+            <div class="preview-card">
+              <span class="lb">מה תקבלו בסוף — תצוגה מוקדמת</span>
+              <h5>תבנית האפיון של המשחק שלכם</h5>
+              <div class="preview-steps">
+                <div class="ps"><span class="n">1</span> מי הלומד שלי?</div>
+                <div class="ps"><span class="n">2</span> מה היעד שלו לשיעור?</div>
+                <div class="ps"><span class="n">3</span> איך נראה ה-HOOK?</div>
+                <div class="ps"><span class="n">4</span> איך נראה הניצחון?</div>
+                <div class="ps"><span class="n">5</span> איך אני נותן feedback?</div>
+              </div>
+              <div style="background:var(--blue-200);border-radius:8px;padding:8px 12px;font-size:11.5px;color:var(--blue-700);font-weight:600;text-align:center;">
+                ↑ ממלאים בקורס · יוצא מוכן ↑
+              </div>
+            </div>
+            <div class="process-strip">
+              <div class="ps-card"><div class="n">שלב · 01</div><h6>הפסיכולוגיה</h6><p>מבינים מה עובד</p></div>
+              <div class="ps-card"><div class="n">שלב · 02</div><h6>בונים</h6><p>ממלאים תבנית</p></div>
+              <div class="ps-card"><div class="n">שלב · 03</div><h6>משחקים</h6><p>מפעילים בשטח</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="annot" style="top:90px;right:-110px;">מטא-מידע על הקורס</div>
+      <div class="annot" style="top:170px;right:-90px;">כותרת + tagline</div>
+      <div class="annot" style="top:300px;right:-130px;">הבטחה בכרטיס בולט</div>
+      <div class="annot" style="top:400px;right:-100px;">CTA + הערה ידנית</div>
+      <div class="annot left" style="top:220px;left:-130px;">תצוגה מקדימה של תבנית האפיון</div>
+      <div class="annot left" style="bottom:80px;left:-110px;">3 שלבים בפס תחתי</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== RECOMMENDATION + TEMPLATE ============== -->
+<section class="part" id="recommend">
+  <header class="part-head">
+    <div class="part-num">05 / PICK</div>
+    <div>
+      <h2>המלצה + תבנית קבועה</h2>
+      <p class="lede">שלוש הגישות תקפות — בחירה תלויה במה את רוצה לתקשר. ההמלצה שלי וההיגיון:</p>
+    </div>
+  </header>
+
+  <div class="rec-grid">
+    <div class="rec-card">
+      <span class="lbl">A · Editorial</span>
+      <h5>בחרי אם:</h5>
+      <p>הכי חשובה לך עקביות עם שאר המסכים בקורס. אם רוצה להחליף בלי שזה ירגיש כמו "דף נחיתה אחר".</p>
+    </div>
+    <div class="rec-card pick">
+      <span class="lbl">B · Journey ✓ ההמלצה</span>
+      <h5>בחרי אם:</h5>
+      <p>רוצה שמסך הפתיחה ירגיש <strong>כתחילתו של משחק</strong>, לא כפרסומת לקורס. נאמן הכי הרבה לעולם הפיראטי, ומגדיר את החוויה ברגע הראשון.</p>
+    </div>
+    <div class="rec-card">
+      <span class="lbl">C · Split</span>
+      <h5>בחרי אם:</h5>
+      <p>חשוב לך להראות שהקורס מסתיים בתוצר קונקרטי. מתאימה אם תרצי לשתף את הקורס לקהל חדש שצריך לראות הוכחה.</p>
+    </div>
+  </div>
+
+  <div class="template-summary">
+    <h4>תבנית קבועה לפתיחת קורס — מרכיבים חובה</h4>
+    <div class="row"><div class="k">1 · תווית קורס</div><div class="v">למעלה: סוג הקורס + מספר יחידות + הקדשה (GBL / GAME BASED LEARNING). אקצנט אדום, monospace.</div></div>
+    <div class="row"><div class="k">2 · כותרת קורס</div><div class="v">"עולים שלב" במשקל 900, גודל 60–80px, צבע נייבי <code>#2C4A60</code>.</div></div>
+    <div class="row"><div class="k">3 · Tagline</div><div class="v">"משיעור פרטי לשיעור חווייתי" — שורה אחת, מקשרת בין מה שיש למה שיהיה.</div></div>
+    <div class="row"><div class="k">4 · הבטחת ערך</div><div class="v">משפט אחד בולט: "תצאו עם משחק לימודי מותאם אישית..." — מעוצב כקופסה / כרטיס / טקסט מודגש (לא נשאר כפסקה רגילה).</div></div>
+    <div class="row"><div class="k">5 · המסע / השלבים</div><div class="v">3-4 נקודות ממוספרות. <strong>לא 3 קלפים שווים.</strong> שלבים, או נקודות, או תחנות — בעלי סדר.</div></div>
+    <div class="row"><div class="k">6 · איור פיראט מרכזי</div><div class="v">אחד גדול, בתנוחת "מחכה לך" / "מצביע קדימה" / "עם דגל". לא פיראט פסיבי.</div></div>
+    <div class="row"><div class="k">7 · כפתור התחלה</div><div class="v">צהוב <code>#F4B83A</code>, יחיד, ממוקם בולט. טקסט: "בואו נתחיל" / "להרים עוגן" — לא "הבא".</div></div>
+    <div class="row"><div class="k">אסור</div><div class="v">בלוק CTA מטבעות (זה מסך פתיחה, לא מסך-מקטע) · מצפן צף מנותק · 3 קלפים שווים · טעויות הקלדה.</div></div>
+  </div>
+
+  <p class="body-copy" style="margin-top:36px;">
+    <strong>סיכום של ההצעה שלי</strong>: לכי על וריאציה B (Journey Map) — היא הכי "עולים שלב". אבל אם זה מרגיש לך גדול מדי לשינוי בבת אחת, וריאציה A היא בטוחה לחלוטין ועדיין מתקנת את 7 הבעיות שזיהיתי.
+    <br><br>
+    תני לי לדעת באיזו את רוצה ללכת ואני אעבד אותה לרזולוציה גבוהה יותר — או אכניס לקובץ הגיידליין הראשי כתבנית חמישית.
+  </p>
+</section>
+
+</main>
+
+<footer class="page-footer">
+  <span class="brand">עולים שלב · עיצוב מחדש לפתיחת הקורס</span>
+  <span>מאי 2026 · 3 וריאציות + תבנית</span>
+</footer>
+
+</body>
+</html>
