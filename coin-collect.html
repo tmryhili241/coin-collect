@@ -154,6 +154,10 @@
   /* כפתור הפעלה */
   .ols-trigger {
     display: block;
+    width: fit-content;
+    box-sizing: border-box;
+    text-decoration: none;
+    text-align: center;
     margin: 18px auto 0;
     background: #F4B83A;
     color: #2C4A60;
@@ -169,9 +173,9 @@
     min-width: 200px;
     transition: transform .12s, box-shadow .12s, opacity .25s;
   }
-  .ols-trigger:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 5px 0 #E0A325; }
-  .ols-trigger:active:not(:disabled){ transform: translateY(3px); box-shadow: 0 1px 0 #E0A325; }
-  .ols-trigger:disabled { opacity: 0.55; cursor: default; }
+  .ols-trigger:hover:not(:disabled):not(.ols-disabled) { transform: translateY(-1px); box-shadow: 0 5px 0 #E0A325; }
+  .ols-trigger:active:not(:disabled):not(.ols-disabled){ transform: translateY(3px); box-shadow: 0 1px 0 #E0A325; }
+  .ols-trigger:disabled, .ols-trigger.ols-disabled { opacity: 0.55; cursor: default; pointer-events: none; }
 
   /* רמז עדין */
   .ols-hint {
@@ -255,7 +259,7 @@
     </div>
   </div>
 
-  <button class="ols-trigger" id="ols-trigger" type="button">אספו את המטבעות</button>
+  <a class="ols-trigger" id="ols-trigger" href="#">אספו את המטבעות</a>
   <div class="ols-hint" id="ols-hint">לחיצה תוסיף את המטבעות לאוצר שלכם</div>
 
 </div>
@@ -270,6 +274,16 @@
   const msgEl     = document.getElementById('ols-msg');
   const triggerBtn= document.getElementById('ols-trigger');
   const hintEl    = document.getElementById('ols-hint');
+
+  function setTriggerDisabled(disabled) {
+    if (disabled) {
+      triggerBtn.classList.add('ols-disabled');
+      triggerBtn.setAttribute('disabled', 'true');
+    } else {
+      triggerBtn.classList.remove('ols-disabled');
+      triggerBtn.removeAttribute('disabled');
+    }
+  }
 
   // קריאת פרמטרים מ-URL (גם אם משובץ כ-iframe)
   const params = new URLSearchParams(window.location.search);
@@ -407,7 +421,7 @@
   function run(){
     if (isRunning) return;
     isRunning = true;
-    triggerBtn.disabled = true;
+    setTriggerDisabled(true);
     hintEl.textContent = 'המטבעות בדרך…';
     hintEl.classList.remove('ols-hint--success');
 
@@ -429,7 +443,10 @@
             setTimeout(() => {
               fadeMsgTo(textAfter);
               triggerBtn.textContent = buttonAfter;
-              triggerBtn.disabled = false;
+              if (buttonLink) {
+                triggerBtn.href = buttonLink;
+              }
+              setTriggerDisabled(false);
               hintEl.textContent = '✓ נצברו ' + coinsAdd + ' מטבעות לאוצר שלכם';
               hintEl.classList.add('ols-hint--success');
               isRunning = false;
@@ -441,16 +458,23 @@
   }
 
   // ============ wiring ============
-  triggerBtn.addEventListener('click', () => {
-    if (triggerBtn.textContent === buttonAfter && !isRunning){
-      // אחרי הצבירה — הכפתור הוא "המשך"
-      if (buttonLink) {
-        window.location.href = buttonLink;
-      } else {
-        try { window.parent.postMessage({type:'ols-treasure-next'}, '*'); } catch(e){}
-      }
+  triggerBtn.addEventListener('click', (e) => {
+    if (isRunning || triggerBtn.classList.contains('ols-disabled')) {
+      e.preventDefault();
       return;
     }
+    if (triggerBtn.textContent === buttonAfter) {
+      // אחרי הצבירה — הכפתור הוא "המשך"
+      if (buttonLink) {
+        // המעבר לקישור יתבצע באופן טבעי על ידי ה-href של ה-a
+        return;
+      } else {
+        e.preventDefault();
+        try { window.parent.postMessage({type:'ols-treasure-next'}, '*'); } catch(e){}
+        return;
+      }
+    }
+    e.preventDefault();
     run();
   });
 
@@ -461,7 +485,8 @@
     balanceEl.textContent = showTotal ? 0 : '+0';
     msgEl.textContent = textBefore;
     triggerBtn.textContent = buttonBefore + ' (+' + coinsAdd + ')';
-    triggerBtn.disabled = false;
+    triggerBtn.href = '#';
+    setTriggerDisabled(false);
     hintEl.textContent = 'לחיצה תוסיף את המטבעות לאוצר שלכם';
     hintEl.classList.remove('ols-hint--success');
   };
