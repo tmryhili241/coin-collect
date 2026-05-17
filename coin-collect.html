@@ -354,6 +354,12 @@
       let startVal = urlParams.get('start');
       if (startVal === null) startVal = urlParams.get('before'); // Fallback to 'before' for legacy iframes
       const startParam = startVal !== null ? (parseInt(startVal, 10) || 0) : (parseInt(document.getElementById('ols-treasure')?.getAttribute('data-start-balance'), 10) || 0);
+      
+      let afterVal = urlParams.get('after');
+      let targetEndBalance = null;
+      if (afterVal !== null && !isNaN(parseInt(afterVal, 10))) {
+          targetEndBalance = parseInt(afterVal, 10);
+      }
       const useStorage = attr('useStorage', 'useStorage', '0') === '1';
 
       // ============ storage ============
@@ -456,15 +462,16 @@
         setTimeout(() => card.classList.remove('ols-card--bump'), 600);
       }
 
-      function animateBalance(from, to, duration) {
+      function animateBalance(fromBal, toBal, fromAdd, toAdd, duration) {
         const t0 = performance.now();
         const id = setInterval(() => {
           const t = performance.now();
           const k = Math.min(1, (t - t0) / duration);
           const eased = 1 - Math.pow(1 - k, 3);
-          const v = Math.round(from + (to - from) * eased);
-          balanceEl.textContent = v;
-          addedEl.textContent = '+' + (v - startBalance);
+          const vBal = Math.round(fromBal + (toBal - fromBal) * eased);
+          const vAdd = Math.round(fromAdd + (toAdd - fromAdd) * eased);
+          balanceEl.textContent = vBal;
+          addedEl.textContent = '+' + vAdd;
           if (k >= 1) clearInterval(id);
         }, 16);
       }
@@ -497,11 +504,15 @@
               arrived++;
               bumpCard();
               // עדכון מספר אגרסיבי בכל הגעה
-              const newTotal = startBalance + arrived;
-              writeStore(newTotal);
+              const prevAdd = arrived - 1;
+              const nextAdd = arrived;
+              
+              const prevBal = targetEndBalance !== null ? Math.round(startBalance + (targetEndBalance - startBalance) * (prevAdd / coinsAdd)) : startBalance + prevAdd;
+              const nextBal = targetEndBalance !== null ? Math.round(startBalance + (targetEndBalance - startBalance) * (nextAdd / coinsAdd)) : startBalance + nextAdd;
+              
+              writeStore(nextBal);
               // אנימציית ספירה (קצרה) למספר הבא
-              const prev = startBalance + (arrived - 1);
-              animateBalance(prev, newTotal, 350);
+              animateBalance(prevBal, nextBal, prevAdd, nextAdd, 350);
 
               if (arrived === coinsAdd) {
                 // סיום
