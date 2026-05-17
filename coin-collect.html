@@ -26,6 +26,7 @@
        data-text-after      / ?after=...     — טקסט אחרי האנימציה
        data-button-before   / ?btn=...       — טקסט כפתור לפני
        data-button-after    / ?btnAfter=...  — טקסט כפתור אחרי
+       data-button-link     / ?link=...      — קישור שהלחיצה על הכפתור תוביל אליו בסיום
        data-show-total      / ?total=1|0     — האם להציג סכום כולל (ברירת מחדל: 1)
        data-auto            / ?auto=0|1      — להפעיל אוטומטית בטעינה (ברירת מחדל: 0)
   */
@@ -236,6 +237,7 @@
      data-text-after="מצוין! +{add} מטבעות זהב נכנסו לאוצר שלכם"
      data-button-before="אספו את המטבעות"
      data-button-after="המשך לפרק הבא"
+     data-button-link=""
      data-show-total="1"
      data-auto="0">
 
@@ -283,6 +285,7 @@
   const textAfter    = attr('textAfter',    'after',    'מצוין! +{add} מטבעות זהב נכנסו לאוצר שלכם').replace('{add}', coinsAdd);
   const buttonBefore = attr('buttonBefore', 'btn',      'אספו את המטבעות');
   const buttonAfter  = attr('buttonAfter',  'btnAfter', 'המשך');
+  const buttonLink   = attr('buttonLink',   'link',     '');
   const showTotal    = attr('showTotal',    'total',    '1') !== '0';
   const autoStart    = attr('auto',         'auto',     '0') === '1';
 
@@ -441,7 +444,11 @@
   triggerBtn.addEventListener('click', () => {
     if (triggerBtn.textContent === buttonAfter && !isRunning){
       // אחרי הצבירה — הכפתור הוא "המשך"
-      try { window.parent.postMessage({type:'ols-treasure-next'}, '*'); } catch(e){}
+      if (buttonLink) {
+        window.location.href = buttonLink;
+      } else {
+        try { window.parent.postMessage({type:'ols-treasure-next'}, '*'); } catch(e){}
+      }
       return;
     }
     run();
